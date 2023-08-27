@@ -1,34 +1,92 @@
 import React, { useState } from 'react';
-import { FiHome, FiInfo, FiBriefcase, FiMessageCircle, FiMail, FiBell } from 'react-icons/fi';
+import {
+    FiHome,
+    FiInfo,
+    FiBriefcase,
+    FiMessageCircle,
+    FiMail,
+    FiBell,
+    FiChevronDown,
+    FiSettings,
+    FiLogOut,
+} from 'react-icons/fi';
 
 const UserDashboard = () => {
     const [activeBox, setActiveBox] = useState(null);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const user = {
+        name: 'John Doe',
+        email: 'john@example.com',
+        phoneNumber: '123-456-7890',
+    };
 
     const boxes = [
-        { title: 'Resources', explanation: 'Repository of resources such as vids' },
-        { title: 'Mentor match', explanation: 'Where mentors are searched for' },
-        { title: 'Networking and Collab', explanation: 'Where other companies see each other' },
-        { title: 'Funding opportunities', explanation: 'Section about financing' },
-        { title: 'Virtual incubators', explanation: 'Where companies join and view meetings or seminars' },
-        { title: 'View our posts', explanation: 'Where we can see the analytics' },
+        { title: 'Resources', explanation: 'A centralized repository of educational materials, articles, videos and guides to start-ups' },
+        { title: 'Mentor match', explanation: 'Mentorship programs that connect experienced entrepreneurs with start-ups seeking guidance' },
+        { title: 'Networking and Collab', explanation: 'Finding potential partners, collaborators, and team members' },
+        { title: 'Funding opportunities', explanation: 'Information about grants, funding rounds and investor contacts' },
+        { title: 'Virtual incubators', explanation: 'A virtual space where start-ups can access co-working, workshops and events' },
+        { title: 'View our posts', explanation: 'See analytics of our posts' },
     ];
 
     const handleBoxClick = (index) => {
         setActiveBox(index);
     };
 
+    const toggleDropdown = () => {
+        setDropdownOpen(!dropdownOpen);
+    };
+
     return (
         <div className="flex h-screen">
             {/* Sidebar */}
             <div className="w-1/4 bg-gray-100 p-6 border-r border-gray-300">
-                <div className="space-y-4">
-                    <SidebarItem icon={<FiHome />} title="Company Profile" />
+                <div className="space-y-4 mt-10">
+                    <div className="mt-[auto]">
+                        <div className="relative">
+                            <div
+                                onClick={toggleDropdown}
+                                className="flex items-center space-x-2 cursor-pointer text-purple-900"
+                            >
+                                <FiHome />
+                                <span>Company Profile</span>
+                                <FiChevronDown />
+                            </div>
+                            {dropdownOpen && (
+                                <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-md p-2">
+                                    <div className="flex items-center space-x-2">
+                                        <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
+                                        <div>
+                                            <p className="font-semibold">{user.name}</p>
+                                            <p className="text-gray-500 text-sm">{user.email}</p>
+                                            <p className="text-gray-500 text-sm">{user.phoneNumber}</p>
+                                        </div>
+                                    </div>
+                                    <hr className="my-2" />
+                                    <div className="flex flex-col space-y-2">
+                                        <span className="cursor-pointer">Sign Out</span>
+                                        <div className="flex items-center space-x-2 cursor-pointer">
+                                            <FiSettings />
+                                            <span>Settings</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
                     <SidebarItem icon={<FiInfo />} title="About Companies" />
                     <SidebarItem icon={<FiBriefcase />} title="Other companies" />
                     <SidebarItem icon={<FiMessageCircle />} title="Create opportunities" />
                     <SidebarItem icon={<FiMail />} title="Message Box" />
-                    <div className="mt-auto">
-                        <SidebarItem icon={<FiBell />} title="Contact us" />
+                    <div className="mt-[auto]">
+                        <div className="relative">
+                            <div
+                                className="flex items-center space-x-2 cursor-pointer text-purple-900" >
+                                <FiBell />
+                                <span>Contact us</span>
+                            </div>                          
+                        </div>
                     </div>
                 </div>
             </div>
