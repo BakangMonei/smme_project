@@ -65,7 +65,10 @@ const UserDashboard = () => {
                                     </div>
                                     <hr className="my-2" />
                                     <div className="flex flex-col space-y-2">
-                                        <span className="cursor-pointer">Sign Out</span>
+                                        <div className="flex items-center space-x-2 cursor-pointer">
+                                            <FiLogOut />
+                                            <span>Sign Out</span>
+                                        </div>
                                         <div className="flex items-center space-x-2 cursor-pointer">
                                             <FiSettings />
                                             <span>Settings</span>
@@ -75,7 +78,7 @@ const UserDashboard = () => {
                             )}
                         </div>
                     </div>
-                    <SidebarItem icon={<FiInfo />} title="About Companies" />
+                    <SidebarItem icon={<FiInfo />} title="About Company" />
                     <SidebarItem icon={<FiBriefcase />} title="Other companies" />
                     <SidebarItem icon={<FiMessageCircle />} title="Create opportunities" />
                     <SidebarItem icon={<FiMail />} title="Message Box" />
