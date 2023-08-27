@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ForgotPassword = () => {
+export const ForgotPassword = () => {
     const [email, setEmail] = useState('');
     const [validationError, setValidationError] = useState(false);
     const [emailSent, setEmailSent] = useState(false);
