@@ -9,14 +9,14 @@ export const LoginPage = () => {
         <div className="mb-4">
           <label className="block text-sm font-medium mb-1">Username</label>
           <input
-            type="text"
+            type="text" placeholder='Username'
             className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
           />
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium mb-1">Password</label>
           <input
-            type="password"
+            type="password" placeholder='Password'
             className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
           />
         </div>

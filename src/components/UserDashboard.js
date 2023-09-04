@@ -22,12 +22,32 @@ const UserDashboard = () => {
     };
 
     const boxes = [
-        { title: 'Resources', explanation: 'A centralized repository of educational materials, articles, videos and guides to start-ups' },
-        { title: 'Mentor match', explanation: 'Mentorship programs that connect experienced entrepreneurs with start-ups seeking guidance' },
-        { title: 'Networking and Collab', explanation: 'Finding potential partners, collaborators, and team members' },
-        { title: 'Funding opportunities', explanation: 'Information about grants, funding rounds and investor contacts' },
-        { title: 'Virtual incubators', explanation: 'A virtual space where start-ups can access co-working, workshops and events' },
-        { title: 'View our posts', explanation: 'See analytics of our posts' },
+        {
+            title: 'Resources',
+            explanation:
+                'A centralized repository of educational materials, articles, videos and guides for startups',
+        },
+        {
+            title: 'Mentor match',
+            explanation:
+                'Mentorship programs that connect experienced entrepreneurs with startups seeking guidance',
+        },
+        {
+            title: 'Networking and Collaboration',
+            explanation: 'Finding potential partners, collaborators, and team members',
+        },
+        {
+            title: 'Funding opportunities',
+            explanation: 'Information about grants, funding rounds, and investor contacts',
+        },
+        {
+            title: 'Virtual incubators',
+            explanation: 'A virtual space where startups can access co-working, workshops, and events',
+        },
+        {
+            title: 'View our posts',
+            explanation: 'See analytics of our posts',
+        },
     ];
 
     const handleBoxClick = (index) => {
@@ -42,53 +62,44 @@ const UserDashboard = () => {
         <div className="flex h-screen">
             {/* Sidebar */}
             <div className="w-1/4 bg-gray-100 p-6 border-r border-gray-300">
+
                 <div className="space-y-4 mt-10">
-                    <div className="mt-[auto]">
-                        <div className="relative">
-                            <div
-                                onClick={toggleDropdown}
-                                className="flex items-center space-x-2 cursor-pointer text-purple-900"
-                            >
-                                <FiHome />
-                                <span>Company Profile</span>
-                                <FiChevronDown />
-                            </div>
-                            {dropdownOpen && (
-                                <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-md p-2">
-                                    <div className="flex items-center space-x-2">
-                                        <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
-                                        <div>
-                                            <p className="font-semibold">{user.name}</p>
-                                            <p className="text-gray-500 text-sm">{user.email}</p>
-                                            <p className="text-gray-500 text-sm">{user.phoneNumber}</p>
-                                        </div>
-                                    </div>
-                                    <hr className="my-2" />
-                                    <div className="flex flex-col space-y-2">
-                                        <div className="flex items-center space-x-2 cursor-pointer">
-                                            <FiLogOut />
-                                            <span>Sign Out</span>
-                                        </div>
-                                        <div className="flex items-center space-x-2 cursor-pointer">
-                                            <FiSettings />
-                                            <span>Settings</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    </div>
+                    <SidebarItem icon={<FiHome />} title="Company Profile" />
                     <SidebarItem icon={<FiInfo />} title="About Company" />
                     <SidebarItem icon={<FiBriefcase />} title="Other companies" />
                     <SidebarItem icon={<FiMessageCircle />} title="Create opportunities" />
                     <SidebarItem icon={<FiMail />} title="Message Box" />
-                    <div className="mt-[auto]">
+                    <SidebarItem icon={<FiBell />} title="Contact Us" />
+                    <div className="mt-auto">
                         <div className="relative">
                             <div
+                                onClick={toggleDropdown}
                                 className="flex items-center space-x-2 cursor-pointer text-purple-900" >
-                                <FiBell />
-                                <span>Contact us</span>
-                            </div>                          
+                                <FiChevronDown />
+                                {dropdownOpen && (
+                                    <div className="absolute left-0 mt-2 bg-white border border-gray-300 rounded-md p-2">
+                                        <div className="flex items-center space-x-2">
+                                            <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
+                                            <div>
+                                                <p className="font-semibold">{user.name}</p>
+                                                <p className="text-gray-500 text-sm">{user.email}</p>
+                                                <p className="text-gray-500 text-sm">{user.phoneNumber}</p>
+                                            </div>
+                                        </div>
+                                        <hr className="my-2" />
+                                        <div className="flex flex-col space-y-2">
+                                            <div className="flex items-center space-x-2 cursor-pointer">
+                                                <FiLogOut />
+                                                <span>Sign Out</span>
+                                            </div>
+                                            <div className="flex items-center space-x-2 cursor-pointer">
+                                                <FiSettings />
+                                                <span>Settings</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

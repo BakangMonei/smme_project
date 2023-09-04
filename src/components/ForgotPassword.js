@@ -29,6 +29,7 @@ export const ForgotPassword = () => {
                     <label className="block text-sm font-medium mb-1">Email</label>
                     <input
                         type="email"
+                        placeholder='Email Here'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"

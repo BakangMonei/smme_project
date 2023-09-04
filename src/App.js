@@ -4,14 +4,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LoginPage } from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import ForgotPassword from './components/ForgotPassword';
-import UserResources from './userdash/UserResources'
+import UserResources from './userdash/UserResources';
+import UserDashboard from './components/UserDashboard';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         {/*To replace WizardContainer with FirstPage later after solving all the*/}
-        <Route path="/" element={<UserResources />}>
+        <Route path="/" element={<UserDashboard />}>
         </Route>
       </Routes>
     </BrowserRouter>
