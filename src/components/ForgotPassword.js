@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { auth } from '../firebase'; // Import your Firebase configuration here
+
 
 export const ForgotPassword = () => {
     const [email, setEmail] = useState('');
@@ -11,9 +13,17 @@ export const ForgotPassword = () => {
             setEmailSent(false);
         } else {
             setValidationError(false);
-            setEmailSent(true);
+            auth.sendPasswordResetEmail(email)
+                .then(() => {
+                    setEmailSent(true);
+                })
+                .catch((error) => {
+                    // Handle any errors here
+                    console.error('Error sending password reset email:', error);
+                });
         }
     };
+
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
