@@ -1,21 +1,22 @@
-import React from 'react';
-import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { LoginPage } from './components/LoginPage';
-import RegisterPage from './components/RegisterPage';
-import ForgotPassword from './components/ForgotPassword';
-import UserResources from './userdash/UserResources';
+import LoginPage from './components/LoginPage';
 import UserDashboard from './components/UserDashboard';
+import RegisterPage from './components/RegisterPage'; // Import RegisterPage component
+import ForgotPassword from './components/ForgotPassword'; // Import ForgotPassword component
+import UserResources from './userdash/UserResources';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import the necessary components
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        {/*To replace WizardContainer with FirstPage later after solving all the*/}
-        <Route path="/" element={<UserDashboard />}>
-        </Route>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/UserDashboard" element={<UserDashboard />} />
+        <Route path="/RegisterPage" element={<RegisterPage />} /> 
+        <Route path="/ForgotPassword" element={<ForgotPassword />} /> 
+        <Route path="/UserResources" element={<UserResources />} /> 
+        {/* Add more routes as needed */}
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
