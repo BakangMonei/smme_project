@@ -2,15 +2,11 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth"; // Add Auth
-import { getFirestore } from "firebase/firestore"; // Add Firestore
+import { collection, getFirestore } from "firebase/firestore"; // Add Firestore
 import { getDatabase } from "firebase/database"; // Add Realtime Database
 import { getStorage } from "firebase/storage"; // Add Storage
 
-
-
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measy67urementId is optional
+// Web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyC0mgV-QX0K8vTD9YH8Q4G6rAdU-4M2sqQ",
     authDomain: "smme-project.firebaseapp.com",
@@ -21,17 +17,20 @@ const firebaseConfig = {
     appId: "1:168835292532:web:c1b497997dfa2c4b772021",
     measurementId: "G-FWN07H6CPY"
 };
-const firebaseApp = initializeApp(firebaseConfig);
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const firebaseApp = initializeApp(firebaseConfig);
+const analytics = getAnalytics(firebaseApp);
 
 // Initialize Firebase services
-const auth = getAuth(app); // Initialize Auth
-const firestore = getFirestore(app); // Initialize Firestore
-const database = getDatabase(app); // Initialize Realtime Database
-const storage = getStorage(app); // Initialize Storage
+const auth = getAuth(firebaseApp); // Initialize Auth
+const firestore = getFirestore(firebaseApp); // Initialize Firestore
+const database = getDatabase(firebaseApp); // Initialize Realtime Database
+const storage = getStorage(firebaseApp); // Initialize Storage
 
+// Getting from firebase
+async function getDetails(firestore){
+    const emailCol = collection(firestore, 'email')
+}
 
 export { auth, firestore, database, storage };
