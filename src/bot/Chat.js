@@ -1,82 +1,67 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function Chat() {
-    const [message, setMessage] = useState('');
-    const [messages, setMessages] = useState([]);
+const Chat = () => {
+    const [inputText, setInputText] = useState('');
+    const [chatHistory, setChatHistory] = useState([]);
 
-    const handleSubmit = async (e) => {
+    const handleMessageSubmit = async (e) => {
         e.preventDefault();
-        if (!message) return;
+
+        if (inputText.trim() === '') return;
+
+        // Add the user's message to the chat history
+        setChatHistory([...chatHistory, { text: inputText, isUser: true }]);
+        setInputText('');
 
         try {
-            const response = await axios.post(
-                'https://api.openai.com/v1/chat/completions',
-                {
-                    model: 'gpt-3.5-turbo',
-                    messages: [
-                        { role: 'system', content: 'You are a helpful assistant.' },
-                        { role: 'user', content: message },
-                    ],
-                },
-                {
-                    headers: {
-                        'Authorization': 'Bearer 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', // Replace with your API key
-                        'Content-Type': 'application/json',
-                    },
-                }
-            );
+            // Send the user's message to the chatbot API
+            const response = await axios.post('http://localhost:5000/api/chatbot', { message: inputText });
 
-            if (response.data.choices && response.data.choices[0].message && response.data.choices[0].message.content) {
-                const chatbotMessage = response.data.choices[0].message.content;
-
-                // Reverse the order of messages and add the new messages to the beginning
-                setMessages([
-                    { text: chatbotMessage, user: 'bot' },
-                    { text: message, user: 'user' },
-                    ...messages,
-                ]);
-
-                setMessage('');
-            } else {
-                console.error('Invalid response from the API');
-            }
+            // Add the chatbot's reply to the chat history
+            setChatHistory([...chatHistory, { text: response.data.message, isUser: false }]);
         } catch (error) {
-            console.error('Error sending message:', error);
+            console.error('Error sending message to chatbot:', error);
         }
     };
 
     return (
-        <div className="w-96 mx-auto mt-8">
-            <div className="border p-4 h-80 overflow-y-auto">
-                {messages.map((msg, index) => (
+        <div className="w-full h-screen flex flex-col justify-end bg-gray-100 p-4">
+            <div className="flex-1 overflow-y-auto">
+                {chatHistory.map((message, index) => (
                     <div
                         key={index}
-                        className={`text-gray-600 ${msg.user === 'user' ? 'text-right' : 'text-left'
-                            }`}
+                        className={`${message.isUser ? 'justify-end' : 'justify-start'
+                            } flex mb-2`}
                     >
-                        <p className="mb-2">{msg.text}</p>
-                        <span className="text-xs">{msg.user}</span>
+                        <div
+                            className={`${message.isUser
+                                ? 'bg-blue-600 text-white rounded-br-lg rounded-t-lg'
+                                : 'bg-gray-200 text-gray-800 rounded-bl-lg rounded-t-lg'
+                                } max-w-2/3 p-2`}
+                        >
+                            {message.text}
+                        </div>
                     </div>
                 ))}
             </div>
-            <form className="mt-4" onSubmit={handleSubmit}>
+            <form className="flex justify-between items-center mt-4" onSubmit={handleMessageSubmit}>
                 <input
                     type="text"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    className="w-full border p-2 rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
                     placeholder="Type a message..."
+                    className="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring focus:border-blue-400"
                 />
                 <button
                     type="submit"
-                    className="mt-2 bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition duration-300"
+                    className="ml-2 px-4 py-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring focus:bg-blue-600"
                 >
                     Send
                 </button>
             </form>
         </div>
     );
-}
+};
 
 export default Chat;
