@@ -15,9 +15,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<VirtualIncubators />} />
+        <Route path="/" element={<Chat />} />
         <Route path="/UserDashboard" element={<UserDashboard />} />
-
         <Route path="/RegisterPage" element={<RegisterPage />} /> 
         <Route path="/ForgotPassword" element={<ForgotPassword />} /> 
         <Route path="/UserResources" element={<UserResources />} /> 

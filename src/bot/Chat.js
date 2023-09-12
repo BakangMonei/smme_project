@@ -10,16 +10,16 @@ const Chat = () => {
 
         if (inputText.trim() === '') return;
 
-        // Add the user's message to the chat history
-        setChatHistory([...chatHistory, { text: inputText, isUser: true }]);
-        setInputText('');
-
         try {
             // Send the user's message to the chatbot API
             const response = await axios.post('http://localhost:5000/api/chatbot', { message: inputText });
 
-            // Add the chatbot's reply to the chat history
-            setChatHistory([...chatHistory, { text: response.data.message, isUser: false }]);
+            // Add the user's message and the chatbot's reply to the chat history
+            const newUserMessage = { text: inputText, isUser: true };
+            const newBotMessage = { text: response.data.message, isUser: false };
+
+            setChatHistory([...chatHistory, newUserMessage, newBotMessage]);
+            setInputText('');
         } catch (error) {
             console.error('Error sending message to chatbot:', error);
         }
