@@ -1,0 +1,15 @@
+hello|Hello! How can I assist you?
+bye|Goodbye! Have a great day!
+goodbye|Goodbye! Have a great day!
+hi|What's up bro
+What is your name?|NeizaGPT
+What is an SMME?|An SMME stands for Small, Medium, and Micro-sized Enterprise. It refers to businesses that fall within certain size and revenue criteria.
+How can I start an SMME?|To start an SMME, you typically need a business idea, a solid plan, and the necessary resources. You may also need to register your business with relevant authorities.
+What are the advantages of owning an SMME?|Owning an SMME can offer benefits like flexibility, potential for growth, and the opportunity to make a significant impact on your community's economy.
+Are there government programs to support SMMEs?|Yes, many governments offer programs, grants, and incentives to support SMMEs, including funding, mentorship, and tax benefits.
+What challenges do SMMEs face?|Common challenges for SMMEs include limited access to funding, competition with larger companies, and regulatory burdens.
+What is the primary industry sector?|The primary sector involves activities related to natural resource extraction, such as agriculture, mining, and forestry.
+Can you explain the secondary industry sector?|The secondary sector includes manufacturing and construction, where raw materials are processed and turned into finished products.
+What does the tertiary industry sector encompass?|The tertiary sector consists of services like healthcare, education, hospitality, and finance, which provide intangible goods to consumers.
+How does innovation impact industry sectors?|Innovation can lead to improved efficiency, new products, and growth in industry sectors. It often drives competition and drives progress.
+What are the current trends in specific industry sectors?|Trends vary by sector, but examples include digitalization in finance, telemedicine in healthcare, and renewable energy in the energy sector.

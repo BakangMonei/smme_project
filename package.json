@@ -34,7 +34,7 @@
     "eject": "react-scripts eject"
   },
   "depServer": {
-    "host": "192.168.1.133",
+    "host": "10.31.27.35",
     "port": 3000
   },
   "eslintConfig": {

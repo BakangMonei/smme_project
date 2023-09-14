@@ -1,0 +1,20 @@
+Hi ChatGPT
+
+Using tailwindcss and reactjs, generate an AdminDashboard.js which has the following and should add to firebase firestore;
+
+[Designed] a. AdminNetwork.js: This is a class where admin view, update, delete and adds to a class called NetworkingCollaboration.js which is for users, and has attributes called id, name, phoneNumber, founder, sector, email, location, website, logo (image),
+[Designed] b. AdminMentorMatch.js: This is a class where admin view, update, delete and adds to a class called MentorMatch.js which is for users, and has attributes id, name, expertise, description, logo(image), LinkedIn, mail, facebook and phoneNumber,
+[Designed] c. AdminFundingOpp.js: This is a class where admin view, update, delete and adds to a class called FundingOpportunity.js which is for users, and has attributes id, name, information, contacts, website, photo, country, minAmount, maxAmount, eligibleSectors, ApplyHere
+[Designed] d. AdminUserResources.js: This is a class where admin view, update, delete and adds to a class called UserResources.js which is for users, and has attributes id, url, name, author, about, category
+[Designed] e. AdminVirtualIncubators.js: This is a class where admin view, update, delete and adds to a class called VirtualIncubators.js which is for users, and has attributes description, location, website
+[Designed] g. AdminAddIndividual:  This is a class where admin view, update, delete and adds firebase, with atrributes Company, email, password, companyType, location, phoneNumber, businessSectors, category.
+h. AdminViewPosts.js: This is a class where admin view, update, delete and adds to a class called UserPosts.js which is for users, and has attributes id, name, email, postDesc
+[Designed] i. AdminProfile.js: This is a class where admin can update, add, view and delete details about their profiles. Attributes are; email, firstname, lastname, gender, phoneNumber, password, postalAddress, physicalAddress, LinkedIn, twitter, whatsapp, discord
+[Designed] h. Settings.js: This is where the admin can signout, change the theme of the app, and you as chatGPT can add other functionalities for Settings.js
+[Designed] j. Chat.js: This is the part where the chatbot is of the app. I created a chatbot. Add it on then AdminDashboard.js
+
+Please make my AdminDashboard and add more awesome. Add a textView which will display the name of CurrentUserID from firebase. and the image.
+
+Add a side bar on the AdminDashboard.js
+
+Create all these classes and link them to the rightful pages
