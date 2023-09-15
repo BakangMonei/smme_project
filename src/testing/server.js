@@ -6,7 +6,7 @@ const app = express();
 app.use(bodyParser.json());
 
 const openai = new OpenAIApi({
-    key: 'bersk-8wjaj6looFxaPZhESdZ7T3BlbkFJL2ot8WjtOT8gEbJq96I3', // Replace with your actual OpenAI API key
+    key: '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', // Replace with your actual OpenAI API key
 });
 
 // Define routes and route handlers here
