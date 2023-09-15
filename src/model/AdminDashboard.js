@@ -45,6 +45,12 @@ const AdminDashboard = () => {
                             Logout
                         </li>
                     </Link>
+                    <Link to="/Chat"> {/* Replace "to" with your actual route if using React Router */}
+                        <li className="flex items-center my-2">
+                            <AiOutlineLogout className="h-5 w-5 mr-2" /> {/* Adjust the icon size and styles as needed */}
+                            My Bot
+                        </li>
+                    </Link>
                     {/* Add more sidebar options similarly */}
                     
                 </ul>

@@ -33,4 +33,4 @@ async function getDetails(firestore){
     const emailCol = collection(firestore, 'email')
 }
 
-export { auth, firestore, database, storage };
+export { auth, firestore, database, storage, firebaseApp };

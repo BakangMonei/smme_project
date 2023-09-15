@@ -26,14 +26,20 @@ export const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    if (!email || !password) {
+      setError("Email and password are required.");
+      return;
+    }
+
     try {
-      signInWithEmailAndPassword(email, password);
-      navigate('/UserDashboard')
+      await signInWithEmailAndPassword(auth, email, password); // Make sure to pass auth as the first argument
+      navigate('/UserDashboard');
     } catch (error) {
       setError(error.message);
       console.error('Login error:', error);
     }
   };
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">

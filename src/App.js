@@ -27,7 +27,7 @@ function App() {
     <Router>
       <Routes>
         {/* For testing only */}
-        <Route path="/" element={<AdminDashboard />} />
+        <Route path="/" element={<LoginPage />} />
 
         {/* Admin routes as needed */}
         <Route path="/AdminDashboard" element={<AdminDashboard />} />

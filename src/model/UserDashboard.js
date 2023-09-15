@@ -17,7 +17,8 @@ const UserDashboard = () => {
     const [activeBox, setActiveBox] = useState(null);
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
-    const user = {
+    // Replace this with your actual user data from Firestore
+    const currentUser = {
         name: 'John Doe',
         email: 'john@example.com',
         phoneNumber: '123-456-7890',
@@ -61,10 +62,9 @@ const UserDashboard = () => {
     };
 
     return (
-        <div className="flex h-screen">
+        <div className="flex flex-col lg:flex-row min-h-screen">
             {/* Sidebar */}
-            <div className="w-1/4 bg-gray-100 p-6 border-r border-gray-300">
-
+            <div className="w-full lg:w-1/4 bg-gray-100 p-6 border-r border-gray-300">
                 <div className="space-y-4 mt-10">
                     <SidebarItem icon={<FiHome />} title="Company Profile" />
                     <SidebarItem icon={<FiInfo />} title="About Company" />
@@ -76,16 +76,18 @@ const UserDashboard = () => {
                         <div className="relative">
                             <div
                                 onClick={toggleDropdown}
-                                className="flex items-center space-x-2 cursor-pointer text-purple-900" >
+                                className="flex items-center space-x-2 cursor-pointer text-purple-900"
+                            >
                                 <FiChevronDown />
                                 {dropdownOpen && (
                                     <div className="absolute left-0 mt-2 bg-white border border-gray-300 rounded-md p-2">
                                         <div className="flex items-center space-x-2">
                                             <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
                                             <div>
-                                                <p className="font-semibold">{user.name}</p>
-                                                <p className="text-gray-500 text-sm">{user.email}</p>
-                                                <p className="text-gray-500 text-sm">{user.phoneNumber}</p>
+                                                {/* Display current user's information */}
+                                                <p className="font-semibold">{currentUser.name}</p>
+                                                <p className="text-gray-500 text-sm">{currentUser.email}</p>
+                                                <p className="text-gray-500 text-sm">{currentUser.phoneNumber}</p>
                                             </div>
                                         </div>
                                         <hr className="my-2" />
@@ -109,7 +111,7 @@ const UserDashboard = () => {
             {/* Main Content */}
             <div className="flex-grow p-6">
                 <h1 className="text-2xl font-semibold mb-4">My Dashboard</h1>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {boxes.map((box, index) => (
                         <DashboardBox
                             key={index}
