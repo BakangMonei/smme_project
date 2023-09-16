@@ -167,7 +167,7 @@ const AdminDashboard = () => {
                             <p className="mt-2 text-sm font-semibold">Click to View Mentors and interact</p>
                         </div>
                     </Link>
-                    <Link to="/FundingOpportunity">
+                    <Link to="/AdminViewFundingOpportunity">
                         <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
                             <div className="flex justify-center items-center mt-8 font-bold">
                                 <FaMoneyBillWave size={32} />

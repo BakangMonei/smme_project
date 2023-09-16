@@ -29,8 +29,8 @@ const database = getDatabase(firebaseApp); // Initialize Realtime Database
 const storage = getStorage(firebaseApp); // Initialize Storage
 
 // Getting from firebase
-async function getDetails(firestore){
-    const emailCol = collection(firestore, 'email')
+async function getDetails(firestore) {
+    const emailCol = collection(firestore, 'users')
 }
 
 export { auth, firestore, database, storage, firebaseApp };

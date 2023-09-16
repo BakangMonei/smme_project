@@ -1,6 +1,12 @@
+// Done [Working Vety Well]
 import React, { useState } from 'react';
+import { addDoc, collection } from 'firebase/firestore';
+import { firestore } from '../firebase'; // Import your Firebase configuration
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 
 function AdminFundingOpp() {
+    // Initialize useNavigate for redirection
+    const navigate = useNavigate();
     const [fundingOpps, setFundingOpps] = useState([]);
     const [newFundingOpp, setNewFundingOpp] = useState({
         name: '',
@@ -15,27 +21,39 @@ function AdminFundingOpp() {
         applyHere: '',
     });
 
-    const addFundingOpp = () => {
-        const updatedFundingOpps = [...fundingOpps, { ...newFundingOpp }];
-        setFundingOpps(updatedFundingOpps);
-        setNewFundingOpp({
-            name: '',
-            information: '',
-            contacts: '',
-            website: '',
-            photo: '',
-            country: '',
-            minAmount: '',
-            maxAmount: '',
-            eligibleSectors: '',
-            applyHere: '',
-        });
-    };
+    const addFundingOppToFirestore = async () => {
+        try {
+            // Add the new funding opportunity to Firestore
+            const fundsCollection = collection(firestore, 'funds');
+            await addDoc(fundsCollection, newFundingOpp);
 
+            // Update the state with the new funding opportunity data
+            setFundingOpps([...fundingOpps, newFundingOpp]);
+
+            // Clear the input fields
+            setNewFundingOpp({
+                name: '',
+                information: '',
+                contacts: '',
+                website: '',
+                photo: '',
+                country: '',
+                minAmount: '',
+                maxAmount: '',
+                eligibleSectors: '',
+                applyHere: '',
+            });
+            // Redirect to the LoginPage
+            navigate('/AdminDashboard'); // Replace '/LoginPage' with the actual path to your LoginPage component
+        } catch (error) {
+            console.error('Error adding funding opportunity: ', error);
+            alert('Error adding funding opportunity. Please try again.');
+        }
+    };
     return (
         <div className="bg-white w-96 h-auto p-4 rounded-lg shadow-md mx-auto">
-            <div className="text-black text-4xl font-bold font-inter">Add Funding Opportunity</div>
-            
+            <div className="text-black text-4xl font-bold font-inter text-center">Add Funding Opportunity</div>
+
             <div className="flex flex-col mt-4">
                 <label className="text-black text-xs font-bold font-inter">Name</label>
                 <input
@@ -143,24 +161,13 @@ function AdminFundingOpp() {
                     onChange={(e) => setNewFundingOpp({ ...newFundingOpp, applyHere: e.target.value })}
                 />
             </div>
+            {/* Add more input fields for funding opportunity data */}
 
-            {/* Add more input fields for other attributes */}
-            <div className="mt-6 flex justify-between">
-                <button className="bg-white rounded-2xl border border-cyan-400 w-1/4 py-2" onClick={addFundingOpp}>
+            <div className="mt-6 flex justify-center">
+                <button className="bg-white rounded-2xl border border-cyan-400 w-1/4 py-2" onClick={addFundingOppToFirestore}>
                     ADD
                 </button>
-                <button className="bg-white rounded-2xl border border-cyan-400 w-1/4 py-2" onClick={addFundingOpp}>
-                    UPDATE
-                </button>
-                <button className="bg-white rounded-2xl border border-cyan-400 w-1/4 py-2" onClick={addFundingOpp}>
-                    DELETE
-                </button>
-                <button className="bg-white rounded-2xl border border-cyan-400 w-1/4 py-2" onClick={addFundingOpp}>
-                    VIEW
-                </button>
-                {/* Add more buttons for update, delete, and view functionalities */}
             </div>
-
         </div>
     );
 }

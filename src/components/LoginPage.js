@@ -1,27 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 import 'firebase/auth'; // Import Firebase Authentication
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 require('firebase/auth')
 
 export const LoginPage = () => {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
-  /**const handleLogin = async (e) => {
-    e.preventDefault();
-
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      navigate('/UserDashboard');
-    } catch (error) {
-      setError(error.message);
-      console.error('Login error:', error);
-    }
-  }; */
+  const auth = getAuth();
+  const db = getFirestore();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -32,14 +24,25 @@ export const LoginPage = () => {
     }
 
     try {
-      await signInWithEmailAndPassword(auth, email, password); // Make sure to pass auth as the first argument
-      navigate('/UserDashboard');
+      const userSnapshot = await getDocs(query(collection(db, 'users'), where('email', '==', email)));
+      const adminSnapshot = await getDocs(query(collection(db, 'admin'), where('email', '==', email)));
+
+      if (userSnapshot.size > 0) {
+        // User exists in the 'user' collection
+        await signInWithEmailAndPassword(auth, email, password);
+        navigate('/UserDashboard');
+      } else if (adminSnapshot.size > 0) {
+        // User exists in the 'admin' collection
+        await signInWithEmailAndPassword(auth, email, password);
+        navigate('/AdminDashboard');
+      } else {
+        setError("Invalid email or password.");
+      }
     } catch (error) {
       setError(error.message);
       console.error('Login error:', error);
     }
   };
-
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">

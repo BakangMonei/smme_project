@@ -1,91 +1,111 @@
-import React, { useState } from 'react';
-import test from '../images/test_img.jpg';
+// Done [Working Vety Well]
+import React, { useState, useEffect } from 'react';
+import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { firestore } from '../firebase';
 
-const FundingOpportunity = () => {
-    const fundingResources = [
-        {
-            id: 1,
-            name: 'SMME Funding Guide',
-            information: 'Comprehensive guide on different funding options available for SMMEs.',
-            contacts: 'John Doe (john@example.com)',
-            website: 'https://www.smme-funding-guide.com',
-            photo: test,
-            country: 'United States',
-            minAmount: '$10,000',
-            maxAmount: '$100,000',
-            eligibleSectors: ['Technology', 'Healthcare', 'Manufacturing'],
-            ApplyHere: 'https://www.smme-funding-guide.com',
-        },
-        {
-            id: 2,
-            name: 'Investor Connection Workshop',
-            information: 'Learn how to connect with potential investors through this workshop.',
-            contacts: 'Jane Smith (jane@example.com)',
-            website: 'https://www.investor-workshop.com',
-            photo: 'investor-workshop.jpg',
-            country: 'Canada',
-            minAmount: '$5,000',
-            maxAmount: '$50,000',
-            eligibleSectors: ['Technology', 'Finance', 'Hospitality'],
-            ApplyHere: 'https://www.investor-workshop.com',
-        },
-        // Add more funding resources
-    ];
-
-    const [searchTerm, setSearchTerm] = useState('');
-
-    const filteredResources = fundingResources.filter((resource) => {
-        return (
-            resource.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            resource.information.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            resource.contacts.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            resource.website.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            resource.ApplyHere.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            resource.country.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            resource.minAmount.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            resource.maxAmount.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            resource.eligibleSectors.some((sector) => sector.toLowerCase().includes(searchTerm.toLowerCase()))
-        );
+function FundingOpportunity() {
+    const [fundingOpps, setFundingOpps] = useState([]);
+    const [isEditing, setIsEditing] = useState(false);
+    const [editingFundingOpp, setEditingFundingOpp] = useState({
+        id: '',
+        name: '',
+        information: '',
+        contacts: '',
+        website: '',
+        photo: '',
+        country: '',
+        minAmount: '',
+        maxAmount: '',
+        eligibleSectors: '',
+        applyHere: '',
     });
 
-    const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
+    const fetchData = async () => {
+        try {
+            const fundingOppsCollection = collection(firestore, 'funds');
+            const querySnapshot = await getDocs(fundingOppsCollection);
+            const oppsData = [];
+            querySnapshot.forEach((doc) => {
+                oppsData.push({ id: doc.id, ...doc.data() });
+            });
+            setFundingOpps(oppsData);
+        } catch (error) {
+            console.error('Error fetching funding opportunities: ', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const handleApplyHere = async (id) => {
+        // Implement the logic to open the "Apply" link based on the ID
+        const opp = fundingOpps.find((fundingOpp) => fundingOpp.id === id);
+        if (opp && opp.applyHere) {
+            window.open(opp.applyHere, '_blank');
+        }
+    };
+
+    const handleContact = async (id) => {
+        // Implement the logic to handle "Inquire" based on the ID
+        const opp = fundingOpps.find((fundingOpp) => fundingOpp.id === id);
+        if (opp && opp.contacts) {
+            // Handle contacting the opportunity
+            console.log(`Contacting: ${opp.contacts}`);
+        }
+    };
+
+    const handleWebsite = async (id) => {
+        // Implement the logic to open the "Website" link based on the ID
+        const opp = fundingOpps.find((fundingOpp) => fundingOpp.id === id);
+        if (opp && opp.website) {
+            window.open(opp.website, '_blank');
+        }
     };
 
     return (
-        <div className="bg-gray-100 py-8">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Funding and Investment Resources</h1>
-                <div className="mb-4">
-                    <input
-                        type="text"
-                        placeholder="Search by name, information, contacts, website, country, min amount, max amount, or eligible sectors"
-                        className="px-4 py-2 border border-gray-300 rounded-lg w-full"
-                        value={searchTerm}
-                        onChange={handleSearchChange}
-                    />
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredResources.map((resource) => (
-                        <div key={resource.id} className="bg-white rounded-lg shadow overflow-hidden">
-                            <img src={resource.photo} alt={resource.name} className="w-full h-40 object-cover" />
-                            <div className="px-4 py-4">
-                                <h3 className="text-md font-semibold">{resource.name}</h3>
-                                <p className="text-sm text-gray-600">Information: {resource.information}</p>
-                                <p className="text-sm text-gray-600">Contacts: {resource.contacts}</p>
-                                <p className="text-sm text-gray-600">Website: <a href={resource.website} target="_blank" rel="noopener noreferrer" className="text-blue-600">{resource.website}</a></p>
-                                <p className="text-sm text-gray-600">Country: {resource.country}</p>
-                                <p className="text-sm text-gray-600">Min Amount: {resource.minAmount}</p>
-                                <p className="text-sm text-gray-600">Max Amount: {resource.maxAmount}</p>
-                                <p className="text-sm text-gray-600">Eligible Sectors: {resource.eligibleSectors.join(', ')}</p>
-                                <p className="text-sm text-gray-600">ApplyHere: <a href={resource.ApplyHere} target="_blank" rel="noopener noreferrer" className="text-blue-600">{resource.ApplyHere}</a></p>
+        <div>
+            <h1 className="text-4xl text-center font-bold mb-4">Funding Opportunities</h1>
+            <div className="flex flex-auto bg-white p-4 rounded-lg shadow-md mx-auto">
+                {fundingOpps.map((fundingOpp) => (
+                    <div key={fundingOpp.id} className="flex flex-auto mx-2 mb-4 p-4 border border-blue-500 rounded-lg">
+                        <div>
+                            <h2 className="text-xl font-semibold">{fundingOpp.name}</h2>
+                            <img src={fundingOpp.photo} alt="Funding Opportunity" className="w-20 h-20 object-cover border border-blue-500 rounded-full mb-4" />
+                            <p>{fundingOpp.information}</p>
+                            <p>{fundingOpp.contacts}</p>
+                            <p>{fundingOpp.website}</p>
+                            <p>{fundingOpp.country}</p>
+                            <p>{fundingOpp.minAmount}</p>
+                            <p>{fundingOpp.maxAmount}</p>
+                            <p>{fundingOpp.eligibleSectors}</p>
+                            <p>{fundingOpp.applyHere}</p>
+                            <div className="mt-2">
+                                <button
+                                    className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md mr-2"
+                                    onClick={() => handleContact(fundingOpp.id)}
+                                >
+                                    Inquire
+                                </button>
+                                <button
+                                    className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md mr-2"
+                                    onClick={() => handleApplyHere(fundingOpp.id)}
+                                >
+                                    Apply
+                                </button>
+                                <button
+                                    className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-md"
+                                    onClick={() => handleWebsite(fundingOpp.id)}
+                                >
+                                    Website
+                                </button>
                             </div>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
-};
+}
 
 export default FundingOpportunity;

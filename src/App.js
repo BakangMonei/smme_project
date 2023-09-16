@@ -18,8 +18,10 @@ import AdminUserResources from './admin/AdminUserResources';
 import AdminVirtualIncubators from './admin/AdminVirtualIncubators';
 import AdminProfile from './admin/AdminProfile';
 import Settings from './components/Settings';
+import AdminViewFundingOpportunity from './admin/AdminViewFundingOpportunity'
 import AdminViewAdmins from './admin/AdminViewAdmins';
 import AdminViewUsers from './admin/AdminViewUsers';
+import AdminUpdateUser from './admin/AdminUpdateUser';
 
 
 function App() {
@@ -27,7 +29,7 @@ function App() {
     <Router>
       <Routes>
         {/* For testing only */}
-        <Route path="/" element={<AdminDashboard />} />
+        <Route path="/" element={<LoginPage />} />
 
         {/* Admin routes as needed */}
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
@@ -38,7 +40,9 @@ function App() {
         <Route path="/AdminUserResources" element={<AdminUserResources />} />  {/* Linked on Dashboard */}
         <Route path="/AdminVirtualIncubators" element={<AdminVirtualIncubators />} /> {/* Linked on Dashboard */}
         <Route path="/AdminProfile" element={<AdminProfile />} /> {/* Linked on Dashboard */}
-        
+        <Route path="/AdminUpdateUser" element={<AdminUpdateUser />} />  {/* Linked on Dashboard */}
+        <Route path="/AdminViewFundingOpportunity" element={<AdminViewFundingOpportunity />} /> {/* Linked on Dashboard */}
+
         {/* User routes as needed */}
         <Route path="/UserDashboard" element={<UserDashboard />} /> {/* Linked on Admin Dashboard Only */}
         <Route path="/UserResources" element={<UserResources />} /> {/* Linked on Admin Dashboard Only */}
