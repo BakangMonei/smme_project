@@ -95,7 +95,7 @@ export const AdminAddInidvidual = () => {
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="bg-white p-8 rounded-md shadow-md w-full max-w-md">
-                <h1 className="text-4xl text-center font-semibold mb-4">Add Company Rep</h1>
+                <h1 className="text-4xl text-center font-semibold mb-4 border-b-2">Add Company Rep</h1>
 
                 {/* Display validation error message */}
                 {validationError && (
@@ -111,9 +111,10 @@ export const AdminAddInidvidual = () => {
                 <div className="grid gap-4 mb-4">
                     {/* First Name */}
                     <div>
-                        <label className="block text-sm font-medium mb-1">First Name</label>
+                        <label className="block text-sm font-mono mb-1">First Name</label>
                         <input
                             type="text"
+                            placeholder='firstname here'
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
                             className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
@@ -122,10 +123,11 @@ export const AdminAddInidvidual = () => {
 
                     {/* Last Name */}
                     <div>
-                        <label className="block text-sm font-medium mb-1">Last Name</label>
+                        <label className="block text-sm font-mono mb-1">Last Name</label>
                         <input
                             type="text"
                             value={lastName}
+                            placeholder='lastname here'
                             onChange={(e) => setLastName(e.target.value)}
                             className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                         />
@@ -133,9 +135,10 @@ export const AdminAddInidvidual = () => {
 
                     {/* Email */}
                     <div>
-                        <label className="block text-sm font-medium mb-1">Email</label>
+                        <label className="block text-sm font-mono mb-1">Email</label>
                         <input
                             type="email"
+                            placeholder='email here'
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
@@ -144,10 +147,11 @@ export const AdminAddInidvidual = () => {
 
                     {/* Password */}
                     <div>
-                        <label className="block text-sm font-medium mb-1">Password</label>
+                        <label className="block text-sm font-mono mb-1">Password</label>
                         <input
                             type="password"
                             value={password}
+                            placeholder='password here'
                             onChange={(e) => setPassword(e.target.value)}
                             className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                         />
@@ -155,7 +159,7 @@ export const AdminAddInidvidual = () => {
 
                     {/* Company Type */}
                     <div>
-                        <label className="block text-sm font-medium mb-1">Company Type</label>
+                        <label className="block text-sm font-mono mb-1">Company Type</label>
                         <select
                             value={companyType}
                             onChange={(e) => setCompanyType(e.target.value)}
@@ -172,10 +176,11 @@ export const AdminAddInidvidual = () => {
 
                     {/* Location */}
                     <div>
-                        <label className="block text-sm font-medium mb-1">Location</label>
+                        <label className="block text-sm font-mono mb-1">Location</label>
                         <input
                             type="text"
                             value={location}
+                            placeholder='location here'
                             onChange={(e) => setLocation(e.target.value)}
                             className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                         />
@@ -183,18 +188,19 @@ export const AdminAddInidvidual = () => {
 
                     {/* Phone Number */}
                     <div>
-                        <label className="block text-sm font-medium mb-1">Phone Number</label>
+                        <label className="block text-sm font-mono mb-1">Phone Number</label>
                         <input
                             type="tel"
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
+                            placeholder='phone number here'
                             className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                         />
                     </div>
 
                     {/* Category */}
                     <div>
-                        <label className="block text-sm font-medium mb-1">Category</label>
+                        <label className="block text-sm font-mono mb-1">Category</label>
                         <select
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}
@@ -217,13 +223,6 @@ export const AdminAddInidvidual = () => {
                 >
                     Register
                 </button>
-
-                {/* Already have an account? Login link */}
-                <div className="mt-4 text-center">
-                    <p className="text-sm">
-                        Go <a href="/AdminDashboard" className="text-blue-500  font-bold">Home</a>
-                    </p>
-                </div>
             </div>
         </div>
     );

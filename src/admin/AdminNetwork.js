@@ -56,96 +56,104 @@ const AdminNetwork = () => {
     };
 
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Add Network</h1>
+        <div className="container mx-auto w-96 p-4">
+            <h1 className="text-4xl font-bold mb-4 text-center border-b-2">Add Network</h1>
             <div className="bg-white rounded-lg shadow-md p-4">
                 <div className="mb-4">
-                    <label className="block mb-2">Image URL:</label>
+                    <label className="block mb-2 font-mono">Image URL</label>
                     <input
                         type="text"
                         name="imageURL"
                         value={newNetwork.imageURL}
                         onChange={handleChange}
-                        className="w-full border rounded-md px-2 py-1"
+                        placeholder='Enter Image URL'
+                        className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block mb-2">Company Name:</label>
+                    <label className="block mb-2 font-mono">Company Name</label>
                     <input
                         type="text"
                         name="companyName"
                         value={newNetwork.companyName}
                         onChange={handleChange}
-                        className="w-full border rounded-md px-2 py-1"
+                        className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
+                        placeholder='Enter Company Name'
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block mb-2">Founder:</label>
+                    <label className="block mb-2 font-mono">Founder</label>
                     <input
                         type="text"
                         name="founder"
                         value={newNetwork.founder}
                         onChange={handleChange}
-                        className="w-full border rounded-md px-2 py-1"
+                        className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
+                        placeholder='Enter Founder Details'
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block mb-2">Sector:</label>
+                    <label className="block mb-2 font-mono">Sector</label>
                     <input
                         type="text"
                         name="sector"
                         value={newNetwork.sector}
                         onChange={handleChange}
-                        className="w-full border rounded-md px-2 py-1"
+                        className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
+                        placeholder='Enter Sector'
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block mb-2">Phone Number:</label>
+                    <label className="block mb-2 font-mono">Phone Number</label>
                     <input
                         type="text"
                         name="phoneNumber"
                         value={newNetwork.phoneNumber}
                         onChange={handleChange}
-                        className="w-full border rounded-md px-2 py-1"
+                        className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
+                        placeholder='Enter Phone Number'
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block mb-2">Email:</label>
+                    <label className="block mb-2 font-mono">Email</label>
                     <input
                         type="email"
                         name="email"
                         value={newNetwork.email}
                         onChange={handleChange}
-                        className="w-full border rounded-md px-2 py-1"
+                        className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
+                        placeholder='Enter Email'
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block mb-2">Location:</label>
+                    <label className="block mb-2 font-mono">Location</label>
                     <input
                         type="text"
                         name="location"
                         value={newNetwork.location}
                         onChange={handleChange}
-                        className="w-full border rounded-md px-2 py-1"
+                        className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
+                        placeholder='Enter Location'
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block mb-2">Website:</label>
+                    <label className="block mb-2 font-mono">Website</label>
                     <input
                         type="text"
                         name="website"
                         value={newNetwork.website}
                         onChange={handleChange}
-                        className="w-full border rounded-md px-2 py-1"
+                        className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
+                        placeholder='Enter Website'
                     />
                 </div>
                 <div className="mb-4">
-                    <label className="block mb-2">Category:</label>
+                    <label className="block mb-2 font-mono">Category:</label>
                     <select
                         name="category"
                         value={newNetwork.category}
                         onChange={handleChange}
-                        className="w-full border rounded-md px-2 py-1"
+                        className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                     >
                         <option value="">Select Category</option>
                         <option value="Technology And Software Development">Technology And Software Development</option>
@@ -165,10 +173,10 @@ const AdminNetwork = () => {
                         <option value="Farming and Agricultural Practices">Farming and Agricultural Practices</option>
                     </select>
                 </div>
-                <div className="flex justify-end">
+                <div className="flex justify-center ">
                     <button
                         onClick={handleAddNetwork}
-                        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
+                        className="bg-blue-500 hover:bg-blue-600 text-white border-2 border-purple-950  px-4 py-2 rounded-md"
                     >
                         Add Network
                     </button>

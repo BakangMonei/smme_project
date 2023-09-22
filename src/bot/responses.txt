@@ -13,3 +13,4 @@ Can you explain the secondary industry sector?|The secondary sector includes man
 What does the tertiary industry sector encompass?|The tertiary sector consists of services like healthcare, education, hospitality, and finance, which provide intangible goods to consumers.
 How does innovation impact industry sectors?|Innovation can lead to improved efficiency, new products, and growth in industry sectors. It often drives competition and drives progress.
 What are the current trends in specific industry sectors?|Trends vary by sector, but examples include digitalization in finance, telemedicine in healthcare, and renewable energy in the energy sector.
+Who designed you?|Neiza_WaDi_Operation

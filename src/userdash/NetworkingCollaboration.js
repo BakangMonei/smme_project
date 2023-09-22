@@ -9,13 +9,13 @@ const NetworkingCollaboration = () => {
             companies: [
                 {
                     id: 1,
-                    name: 'Digital Solutions Inc.',
-                    phoneNumber: '123-456-7890',
-                    founder: 'John Doe',
-                    sector: 'Digital Marketing',
-                    email: 'john@example.com',
-                    location: 'New York, NY',
-                    website: 'https://www.digitalsolutions.com',
+                    name: 'SwiftIQ.',
+                    phoneNumber: '+26772711192',
+                    founder: 'Mr. Monei Bakang',
+                    sector: 'Machine Learning and Artificial Intelligence',
+                    email: 'bakangmonei2@gmail.com',
+                    location: 'Gaborone, Botswana',
+                    website: 'https://swiftiq.d2w1kolfz8intr.amplifyapp.com/',
                     logo: test, // Add the URL of the company logo image
                 },
                 {

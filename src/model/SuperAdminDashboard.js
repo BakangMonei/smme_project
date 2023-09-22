@@ -19,12 +19,12 @@ import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { FiUsers } from 'react-icons/fi';
 import { FaRobot } from 'react-icons/fa';
 import { auth } from '../firebase'; // Import auth from Firebase
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import { BiPhoneCall } from 'react-icons/bi';
 import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Import Firestore functions
 
 
-const AdminDashboard = () => {
+const SuperAdminDashboard = () => {
 
 
     // Function to handle user logout
@@ -94,7 +94,7 @@ const AdminDashboard = () => {
                     {userData ? (
                         <span>{userData.firstname} {userData.lastname}</span>
                     ) : (
-                        <span>Loading...</span>
+                        <span>Mr. Bakang Monei Motshegwe</span>
                     )}
                 </div>
 
@@ -135,14 +135,14 @@ const AdminDashboard = () => {
                         <AiOutlineLogout className="h-5 w-5 mr-2" />
                         Logout
                     </li>
-                    
+
                     {/* Add more sidebar options similarly */}
-                    
+
                 </ul>
             </div>
             {/* Content */}
             <div className="w-4/5 p-4">
-                <h1 className="text-4xl font-bold text-center pb-4">Admin Dashboard</h1>
+                <h1 className="text-4xl font-bold text-center pb-4">Super Admin Dashboard</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                     {/* Content boxes */}
                     <Link to="/AdminProfile">
@@ -151,20 +151,20 @@ const AdminDashboard = () => {
                                 <FaHome size={32} />
                                 <p className="ml-2 font-bold">My Profile</p>
                             </div>
-                            <p className="mt-2 text-sm font-semibold">This is the Administrator Profile</p>
+                            <p className="mt-2 text-sm font-semibold">This is the Super AdminProfile</p>
                         </div>
                     </Link>
 
                     <Link to="/AdminAddIndividual">
                         <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
                             <div className="flex justify-center items-center mt-8 font-bold">
-                                <BsFillPersonPlusFill size={32} /> 
-                                <p className="ml-2 font-bold">Add Users</p> 
+                                <BsFillPersonPlusFill size={32} />
+                                <p className="ml-2 font-bold">Add Users</p>
                             </div>
                             <p className="mt-2 text-sm font-semibold">Click to add New Individual or Company</p>
                         </div>
                     </Link>
-                  
+
                     <Link to="/AdminFundingOpp">
                         <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
                             <div className="flex justify-center items-center mt-8 font-bold">
@@ -189,7 +189,7 @@ const AdminDashboard = () => {
                         <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
                             <div className="flex justify-center items-center mt-8 font-bold">
                                 <FaNetworkWired size={32} />
-                                <p className="ml-2 font-bold">Add Networking Collabs</p> 
+                                <p className="ml-2 font-bold">Add Networking Collabs</p>
                             </div>
                             <p className="mt-2 text-sm font-semibold">Click to add New Networking Opportunities</p>
                         </div>
@@ -199,7 +199,7 @@ const AdminDashboard = () => {
                         <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
                             <div className="flex justify-center items-center mt-8 font-bold">
                                 <LiaBookSolid size={32} />
-                                <p className="ml-2 font-bold">Add Useful Resources</p> 
+                                <p className="ml-2 font-bold">Add Useful Resources</p>
                             </div>
                             <p className="mt-2 text-sm font-semibold">Click to add New Resources</p>
                         </div>
@@ -218,7 +218,7 @@ const AdminDashboard = () => {
                     <Link to="/UserDashboard">
                         <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
                             <div className="flex justify-center items-center mt-8 font-bold">
-                                <AiOutlineUser size={32} /> 
+                                <AiOutlineUser size={32} />
                                 <p className="ml-2 font-bold">Log As User</p>
                             </div>
                             <p className="mt-2 text-sm font-semibold">Click to experience user view</p>
@@ -271,6 +271,16 @@ const AdminDashboard = () => {
                         </div>
                     </Link>
 
+                    <Link to="/AdminViewAdmins">
+                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
+                            <div className="flex justify-center items-center mt-8 font-bold">
+                                <MdOutlineAdminPanelSettings size={32} />
+                                <p className="ml-2 font-bold">View Other Admins</p>
+                            </div>
+                            <p className="mt-2 text-sm font-semibold">Click to view other administrators</p>
+                        </div>
+                    </Link>
+
                     <Link to="/AdminViewUsers">
                         <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
                             <div className="flex justify-center items-center mt-8 font-bold">
@@ -286,4 +296,4 @@ const AdminDashboard = () => {
     );
 };
 
-export default AdminDashboard;
+export default SuperAdminDashboard;

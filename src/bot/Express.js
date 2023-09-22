@@ -1,3 +1,5 @@
+require('dotenv').config(); // Load environment variables from .env file
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -8,8 +10,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// Define your OpenAI API key
-const openaiApiKey = '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'; // Replace with your actual API key
+// Define your OpenAI API key (loaded from environment variables)
+const openaiApiKey = process.env.OPENAI_API_KEY;
 
 // Define your chatbot API endpoint
 app.post('/api/chatbot', async (req, res) => {
@@ -40,14 +42,19 @@ function readResponsesFromFile(filename) {
 
 // Function to perform an internet search using Google Custom Search API
 async function searchOnInternet(userMessage) {
-    // Replace the following with your Google Custom Search API code (apiKey and cseId)
-    const apiKey = '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'; // Replace with your actual API key
-    const cseId = 'b43a4af88f88a4806'; // Replace with your actual custom search engine ID
+    try {
+        // Replace the following with your Google Custom Search API code (apiKey and cseId)
+        const apiKey = process.env.GOOGLE_API_KEY;
+        const cseId = process.env.CUSTOM_SEARCH_ENGINE_ID;
 
-    const apiUrl = `https://www.googleapis.com/customsearch/v1?q=${userMessage}&key=${apiKey}&cx=${cseId}`;
+        const apiUrl = `https://www.googleapis.com/customsearch/v1?q=${userMessage}&key=${apiKey}&cx=${cseId}`;
 
-    const response = await axios.get(apiUrl);
-    return response.data;
+        const response = await axios.get(apiUrl);
+        return response.data;
+    } catch (error) {
+        console.error('Error performing internet search:', error);
+        throw error; // Re-throw the error to be caught at the higher level
+    }
 }
 
 // Function to generate a response based on user input, including internet searches
@@ -63,7 +70,6 @@ async function generateResponse(userMessage) {
         }
     }
 
-
     // If no match is found in the text file, perform an internet search
     try {
         const response = await searchOnInternet(userMessage);
@@ -72,6 +78,7 @@ async function generateResponse(userMessage) {
             return response.items[0].title + ': ' + response.items[0].link;
         }
     } catch (error) {
+        // Handle the error or log it, and continue to the next step
         console.error('Error performing internet search:', error);
     }
 
@@ -80,6 +87,7 @@ async function generateResponse(userMessage) {
         const response = await generateOpenAIResponse(userMessage);
         return response.data.choices[0].text;
     } catch (error) {
+        // Handle the error or log it, and continue to the next step
         console.error('Error generating response from OpenAI:', error);
     }
 
@@ -89,19 +97,25 @@ async function generateResponse(userMessage) {
 
 // Function to generate a response using OpenAI's GPT-3
 async function generateOpenAIResponse(userMessage) {
-    const openaiUrl = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
+    try {
+        const openaiUrl = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
 
-    const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${openaiApiKey}`
-    };
+        const headers = {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${openaiApiKey}`
+        };
 
-    const requestBody = {
-        prompt: userMessage,
-        max_tokens: 50 // Adjust the max_tokens as needed
-    };
+        const requestBody = {
+            prompt: userMessage,
+            max_tokens: 50 // Adjust the max_tokens as needed
+        };
 
-    return axios.post(openaiUrl, requestBody, { headers });
+        const response = await axios.post(openaiUrl, requestBody, { headers });
+        return response;
+    } catch (error) {
+        console.error('Error generating response from OpenAI:', error);
+        throw error; // Re-throw the error to be caught at the higher level
+    }
 }
 
 const port = process.env.PORT || 5000;

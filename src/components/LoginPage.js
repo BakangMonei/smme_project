@@ -26,6 +26,7 @@ export const LoginPage = () => {
     try {
       const userSnapshot = await getDocs(query(collection(db, 'users'), where('email', '==', email)));
       const adminSnapshot = await getDocs(query(collection(db, 'admin'), where('email', '==', email)));
+      const s_adminSnapshot = await getDocs(query(collection(db, 's_admin'), where('email', '==', email)));
 
       if (userSnapshot.size > 0) {
         // User exists in the 'user' collection
@@ -35,6 +36,11 @@ export const LoginPage = () => {
         // User exists in the 'admin' collection
         await signInWithEmailAndPassword(auth, email, password);
         navigate('/AdminDashboard');
+      } 
+      else if (s_adminSnapshot.size > 0) {
+        // User exists in the 's_admin' collection
+        await signInWithEmailAndPassword(auth, email, password);
+        navigate('/SuperAdminDashboard');
       } else {
         setError("Invalid email or password.");
       }

@@ -91,8 +91,8 @@ function AdminViewFundingOpportunity() {
     return (
 
         <div>
-            <h1 className="text-4xl text-center font-bold mb-4">Funding Opportunities</h1>
-            <div className="flex flex-auto bg-white p-4 rounded-lg shadow-md mx-auto">
+            <h1 className="h-auto text-4xl text-center font-bold mb-4">Funding Opportunities</h1>
+            <div className=" grid grid-cols-3 bg-white p-4 rounded-lg shadow-md mx-auto">
                 {fundingOpps.map((fundingOpp) => (
                     <div key={fundingOpp.id} className="flex flex-auto mx-2 mb-4 p-4 border border-blue-500 rounded-lg">
                         {isEditing && editingFundingOpp.id === fundingOpp.id ? (

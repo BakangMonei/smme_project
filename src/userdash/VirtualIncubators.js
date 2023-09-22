@@ -1,15 +1,16 @@
 import React from 'react';
+import test from '../images/test_img.jpg';
 
 const VirtualIncubators = () => {
     return (
-        <div className="bg-gray-100 py-8">
+        <div className="bg-gray-100 h-screen py-8 ">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 className="text-2xl font-semibold text-gray-900 mt-8 mb-4">Virtual Incubators</h1>
+                <h1 className="text-4xl font-bold text-black mt-8 mb-4 text-center border-b-2">Virtual Incubators</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* Virtual Co-Working Space */}
                     <div className="bg-white rounded-lg shadow overflow-hidden">
                         <img
-                            src="virtual-co-working.jpg"
+                            src={test}
                             alt="Virtual Co-Working Space"
                             className="w-full h-40 object-cover"
                         />
@@ -38,7 +39,7 @@ const VirtualIncubators = () => {
                     {/* Virtual Workshops */}
                     <div className="bg-white rounded-lg shadow overflow-hidden">
                         <img
-                            src="virtual-workshops.jpg"
+                            src={test}
                             alt="Virtual Workshops"
                             className="w-full h-40 object-cover"
                         />
@@ -67,7 +68,7 @@ const VirtualIncubators = () => {
                     {/* Virtual Events */}
                     <div className="bg-white rounded-lg shadow overflow-hidden">
                         <img
-                            src="virtual-events.jpg"
+                            src={test}
                             alt="Virtual Events"
                             className="w-full h-40 object-cover"
                         />

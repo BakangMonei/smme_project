@@ -23,14 +23,22 @@ import AdminViewAdmins from './admin/AdminViewAdmins';
 import AdminViewUsers from './admin/AdminViewUsers';
 import AdminUpdateUser from './admin/AdminUpdateUser';
 import AdminViewNetwork from './admin/AdminViewNetwork ';
+import UserDash from './testing/UserDash';
+import SuperAdminDashboard from './model/SuperAdminDashboard';
+import SplashScreen from './components/SplashScreen';
 
 
 function App() {
+
   return (
     <Router>
       <Routes>
         {/* For testing only */}
-        <Route path="/" element={<AdminViewNetwork />} />
+        <Route path="/" element={<SplashScreen />} />
+        <Route path="/SplashScreen" element={<SplashScreen />} />
+
+        {/* For SuperAdminDashboard */}
+        <Route path="/SuperAdminDashboard" element={<SuperAdminDashboard />} />
 
         {/* Admin routes as needed */}
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
@@ -43,7 +51,7 @@ function App() {
         <Route path="/AdminProfile" element={<AdminProfile />} /> {/* Linked on Dashboard */}
         <Route path="/AdminUpdateUser" element={<AdminUpdateUser />} />  {/* Linked on Dashboard */}
         <Route path="/AdminViewFundingOpportunity" element={<AdminViewFundingOpportunity />} /> {/* Linked on Dashboard */}
-        <Route path ="/AdminViewNetwork" element={<AdminViewNetwork />} /> {/* Linked on Dashboard */}
+        <Route path="/AdminViewNetwork" element={<AdminViewNetwork />} /> {/* Linked on Dashboard */}
 
         {/* User routes as needed */}
         <Route path="/UserDashboard" element={<UserDashboard />} /> {/* Linked on Admin Dashboard Only */}

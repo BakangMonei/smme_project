@@ -1,5 +1,5 @@
+// Done [Working Very Well]
 import React, { useState } from 'react';
-
 function AdminVirtualIncubators() {
     // Assuming VirtualIncubators.js is imported or included where necessary
     // You can initialize it with some example data for testing
@@ -28,52 +28,44 @@ function AdminVirtualIncubators() {
     // Define functions for updating, deleting, and viewing incubators as needed
 
     return (
-        <div className="bg-white w-96 h-auto p-4 rounded-lg shadow-md mx-auto">
-            <div className="text-black text-4xl text-center font-bold font-inter">Manage Virtual Incubators</div>
+        <div className="mt-20 bg-white w-96 h-auto p-4 rounded-lg shadow-md mx-auto">
+            <div className="text-black text-4xl text-center font-sans font-bold border-b-2">Manage Virtual Incubators</div>
 
             <div className="flex flex-col mt-4">
-                <label className="text-black text-xs font-bold font-inter">Description</label>
+                <label className="text-black text-xl font-mono">Description</label>
                 <input
                     type="text"
-                    className="bg-zinc-300 rounded-2xl border border-cyan-400 p-1"
+                    className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                     placeholder="Enter Description"
                     value={newIncubator.description}
                     onChange={(e) => setNewIncubator({ ...newIncubator, description: e.target.value })}
                 />
             </div>
             <div className="flex flex-col mt-4">
-                <label className="text-black text-xs font-bold font-inter">Location</label>
+                <label className="text-black text-xl font-mono">Location</label>
                 <input
                     type="text"
-                    className="bg-zinc-300 rounded-2xl border border-cyan-400 p-1"
+                    className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                     placeholder="Enter Location"
                     value={newIncubator.location}
                     onChange={(e) => setNewIncubator({ ...newIncubator, location: e.target.value })}
                 />
             </div>
             <div className="flex flex-col mt-4">
-                <label className="text-black text-xs font-bold font-inter">Website</label>
+                <label className="text-black text-xl font-mono">Website</label>
                 <input
                     type="text"
-                    className="bg-zinc-300 rounded-2xl border border-cyan-400 p-1"
+                    className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                     placeholder="Enter Website URL"
                     value={newIncubator.website}
                     onChange={(e) => setNewIncubator({ ...newIncubator, website: e.target.value })}
                 />
             </div>
-            <div className="mt-6 flex justify-between">
-                <button className="bg-white rounded-2xl border border-cyan-400 w-1/4 py-2" onClick={addIncubator}>
+            <div className="mt-6 flex justify-center">
+                <button className="border-purple-950 rounded-2xl border bg-blue-500  w-1/4 py-2" onClick={addIncubator}>
                     ADD
                 </button>
-                <button className="bg-white rounded-2xl border border-cyan-400 w-1/4 py-2" onClick={addIncubator}>
-                    DELETE
-                </button>
-                <button className="bg-white rounded-2xl border border-cyan-400 w-1/4 py-2" onClick={addIncubator}>
-                    VIEW
-                </button>
-                <button className="bg-white rounded-2xl border border-cyan-400 w-1/4 py-2" onClick={addIncubator}>
-                    UPDATE
-                </button>
+
                 {/* Add more buttons for update, delete, and view functionalities */}
             </div>
         </div>

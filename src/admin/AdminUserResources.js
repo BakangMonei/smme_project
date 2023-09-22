@@ -1,5 +1,5 @@
+// Done [Working Very Well]
 import React, { useState } from 'react';
-
 function AdminUserResources() {
     // Assuming UserResources.js is imported or included where necessary
     // You can initialize it with some example data for testing
@@ -35,33 +35,33 @@ function AdminUserResources() {
 
     return (
         <div className="bg-white w-96 h-auto p-4 rounded-lg shadow-md mx-auto">
-            <div className="text-black text-4xl font-bold text-center font-inter">Manage User Resources</div>
-            
+            <div className="text-black text-4xl font-bold text-center font-sans border-b-2">Manage User Resources</div>
+
             <div className="flex flex-col mt-4">
-                <label className="text-black text-xs font-bold font-inter">Resource URL</label>
+                <label className="text-black text-xl font-mono">Resource URL</label>
                 <input
                     type="text"
-                    className="bg-zinc-300 rounded-2xl border border-cyan-400 p-1"
+                    className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                     placeholder="Enter Resource URL"
                     value={newResource.url}
                     onChange={(e) => setNewResource({ ...newResource, url: e.target.value })}
                 />
             </div>
             <div className="flex flex-col mt-4">
-                <label className="text-black text-xs font-bold font-inter">Resource Name</label>
+                <label className="text-black text-xl font-mono">Resource Name</label>
                 <input
                     type="text"
-                    className="bg-zinc-300 rounded-2xl border border-cyan-400 p-1"
+                    className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                     placeholder="Enter Resource Name"
                     value={newResource.name}
                     onChange={(e) => setNewResource({ ...newResource, name: e.target.value })}
                 />
             </div>
             <div className="flex flex-col mt-4">
-                <label className="text-black text-xs font-bold font-inter">Resource ID</label>
+                <label className="text-black text-xl font-mono">Resource ID</label>
                 <input
                     type="text"
-                    className="bg-zinc-300 rounded-2xl border border-cyan-400 p-1"
+                    className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                     placeholder="Enter Resource ID"
                     value={newResource.id}
                     onChange={(e) => setNewResource({ ...newResource, id: e.target.value })}
@@ -69,10 +69,10 @@ function AdminUserResources() {
             </div>
 
             <div className="flex flex-col mt-4">
-                <label className="text-black text-xs font-bold font-inter">Author</label>
+                <label className="text-black text-xl font-mono">Author</label>
                 <input
                     type="text"
-                    className="bg-zinc-300 rounded-2xl border border-cyan-400 p-1"
+                    className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                     placeholder="Enter Author"
                     value={newResource.author}
                     onChange={(e) => setNewResource({ ...newResource, author: e.target.value })}
@@ -80,9 +80,9 @@ function AdminUserResources() {
             </div>
 
             <div className="flex flex-col mt-4">
-                <label className="text-black text-xs font-bold font-inter">About</label>
+                <label className="text-black text-xl font-mono">About</label>
                 <textarea
-                    className="bg-zinc-300 rounded-2xl border border-cyan-400 p-1"
+                    className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                     placeholder="Enter About"
                     rows="3"
                     value={newResource.about}
@@ -91,10 +91,10 @@ function AdminUserResources() {
             </div>
 
             <div className="flex flex-col mt-4">
-                <label className="text-black text-xs font-bold font-inter">Category</label>
+                <label className="text-black text-xl font-mono">Category</label>
                 <input
                     type="text"
-                    className="bg-zinc-300 rounded-2xl border border-cyan-400 p-1"
+                    className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
                     placeholder="Enter Category"
                     value={newResource.category}
                     onChange={(e) => setNewResource({ ...newResource, category: e.target.value })}
@@ -102,19 +102,11 @@ function AdminUserResources() {
             </div>
 
             {/* Add more input fields for other resource attributes */}
-            <div className="mt-6 flex justify-between">
-                <button className="bg-white rounded-2xl border border-cyan-400 w-1/4 py-2" onClick={addResource}>
+            <div className="mt-6 flex justify-center">
+                <button className="bg-blue-500 border-purple-950 rounded-2xl border w-1/4 py-2" onClick={addResource}>
                     ADD
                 </button>
-                <button className="bg-white rounded-2xl border border-cyan-400 w-1/4 py-2" onClick={addResource}>
-                    UPDATE
-                </button>
-                <button className="bg-white rounded-2xl border border-cyan-400 w-1/4 py-2" onClick={addResource}>
-                    DELETE
-                </button>
-                <button className="bg-white rounded-2xl border border-cyan-400 w-1/4 py-2" onClick={addResource}>
-                    VIEW
-                </button>
+
                 {/* Add more buttons for update, delete, and view functionalities */}
             </div>
         </div>

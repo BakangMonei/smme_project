@@ -1,32 +1,47 @@
-// Settings.js
-import React from 'react';
+import React, { useState } from 'react';
 
 const Settings = () => {
-    const handleSignOut = () => {
-        // Implement signout logic here, e.g., clearing user session.
-        console.log('Signing out...');
+    // State variables for user preferences
+    const [personalDetails, setPersonalDetails] = useState({ name: '', email: '', contactInfo: '' });
+    const [profilePicture, setProfilePicture] = useState(null);
+    const [notificationSettings, setNotificationSettings] = useState({ emailNotifications: false, inAppNotifications: false, notificationFrequency: '' });
+    // Define state variables for other sections similarly
+
+    // Function to handle form submissions for each section
+    const handlePersonalDetailsSubmit = (e) => {
+        e.preventDefault();
+        // Update user's personal details on the server
     };
 
-    const handleChangeTheme = (theme) => {
-        // Implement theme change logic here.
-        console.log(`Changing theme to ${theme}`);
+    const handleProfilePictureUpload = (e) => {
+        // Handle profile picture upload and update on the server
     };
+
+    const handleNotificationSettingsSubmit = (e) => {
+        e.preventDefault();
+        // Update user's notification preferences on the server
+    };
+
+    // Define similar functions for other sections
 
     return (
-        <div className="container mx-auto mt-8">
-            <h1 className="text-2xl font-bold mb-4">Settings</h1>
-            <button
-                onClick={handleSignOut}
-                className="bg-red-500 text-white py-2 px-4 mr-4"
-            >
-                Sign Out
-            </button>
-            <label className="mr-2">Change Theme:</label>
-            <select onChange={(e) => handleChangeTheme(e.target.value)}>
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-            </select>
-            {/* Add other settings options here */}
+        <div className="max-w-3xl mx-auto p-4">
+            <h1 className="text-2xl font-semibold mb-4">Profile Information</h1>
+            <div className="mb-8">
+                <h2 className="text-lg font-semibold mb-2">Edit personal details</h2>
+                <form onSubmit={handlePersonalDetailsSubmit}>
+                    {/* Input fields for name, email, and contact information */}
+                    {/* Submit button */}
+                </form>
+            </div>
+
+            <div className="mb-8">
+                <h2 className="text-lg font-semibold mb-2">Upload or change profile picture</h2>
+                <input type="file" accept="image/*" onChange={handleProfilePictureUpload} />
+                {/* Display current profile picture */}
+            </div>
+
+            {/* Repeat similar sections for other settings categories */}
         </div>
     );
 };

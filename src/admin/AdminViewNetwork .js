@@ -17,8 +17,7 @@ const Card = ({ network, onDelete, onUpdate }) => {
                 {network.imageURL && (
                     <img
                         src={network.imageURL}
-                        alt="Network Image"
-                        className="w-10 h-10 rounded-full mr-2"
+                        alt="Network Image"                        className="w-10 h-10 rounded-full mr-2"
                     />
                 )}
                 <h2 className="text-lg font-semibold">{network.companyName}</h2>

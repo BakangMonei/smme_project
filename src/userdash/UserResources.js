@@ -4,10 +4,10 @@ const resourceData = {
     RESOURCEFUL_BOOKS: [
         {
             id: 1,
-            url: 'book-url-1',
-            name: 'Book 1',
-            author: 'Author 1',
-            about: 'About Book 1',
+            url: 'amazon.com',
+            name: 'Good to Great',
+            author: 'Jim Collins',
+            about: 'This book explores what separates truly great companies from the merely good ones. Jim Collins and his team of researchers identify key factors that contribute to sustained business success over time.',
             category: 'Books',
         },
         {
@@ -202,7 +202,7 @@ class UserResources extends React.Component {
     renderResourceBoxes(resources) {
         return resources.map(resource => (
             <div key={resource.id} className="p-4 border rounded shadow mb-4">
-                <h2 className="text-lg font-semibold">{resource.name || resource.channelName || resource.webName}</h2>
+                <h2 className="text-lg font-semibold">{resource.name || resource.channelName || resource.webName || resource.author}</h2>
                 <p className="text-sm text-gray-600">{resource.about}</p>
                 <a href={resource.url || resource.link} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
                     {resource.url || resource.link}
@@ -214,7 +214,7 @@ class UserResources extends React.Component {
     renderCategories() {
         return Object.keys(resourceData).map(category => (
             <div key={category}>
-                <h1 className="text-xl font-semibold mt-8">{category}</h1>
+                <h1 className="text-xl font-semiblack mt-8">{category}</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     {this.renderResourceBoxes(resourceData[category])}
                 </div>
@@ -225,7 +225,7 @@ class UserResources extends React.Component {
     render() {
         return (
             <div className="container mx-auto p-8">
-                <h1 className="text-3xl font-semibold mb-4">User Resources</h1>
+                <h1 className="text-4xl font-bold mb-4 text-center border-b-2">User Resources</h1>
                 {this.renderCategories()}
             </div>
         );

@@ -14,14 +14,14 @@ export const MentorMatch = () => {
             mentors: [
                 {
                     id: 1,
-                    name: 'John Doe',
-                    expertise: 'Web Development',
-                    description: 'Experienced in improving website rankings and driving organic traffic.',
+                    name: 'Mr. Monei Bakang',
+                    expertise: 'Software Engineer',
+                    description: 'Experienced in OOAD and AI',
                     image: test,
                     linkedin: 'https://www.linkedin.com/in/johndoe',
                     mail: 'johndoe@example.com',
                     facebook: 'https://www.facebook.com/johndoe',
-                    phoneNumber: '+1234567890',
+                    phoneNumber: '+267 72711192',
                 },
                 {
                     id: 2,
