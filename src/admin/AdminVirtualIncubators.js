@@ -28,7 +28,7 @@ function AdminVirtualIncubators() {
     // Define functions for updating, deleting, and viewing incubators as needed
 
     return (
-        <div className="mt-20 bg-white w-96 h-auto p-4 rounded-lg shadow-md mx-auto">
+        <div className="mt-20 bg-white w-96 h-screen p-4 rounded-lg shadow-md mx-auto">
             <div className="text-black text-4xl text-center font-sans font-bold border-b-2">Manage Virtual Incubators</div>
 
             <div className="flex flex-col mt-4">

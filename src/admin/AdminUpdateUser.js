@@ -26,7 +26,7 @@ const AdminUpdateUser = ({ user, onUpdate, onClose }) => {
     };
 
     return (
-        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-40 z-50">
+        <div className="fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-black bg-opacity-40 z-50">
             <div className="bg-white w-96 p-4 rounded-lg shadow-md">
                 <h2 className="text-2xl font-semibold mb-4">Edit User</h2>
                 <div className="mb-4">

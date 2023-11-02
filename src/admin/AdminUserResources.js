@@ -34,7 +34,7 @@ function AdminUserResources() {
     // Define functions for updating, deleting, and viewing resources as needed
 
     return (
-        <div className="bg-white w-96 h-auto p-4 rounded-lg shadow-md mx-auto">
+        <div className="bg-white w-96 h-screen p-4 rounded-lg shadow-md mx-auto">
             <div className="text-black text-4xl font-bold text-center font-sans border-b-2">Manage User Resources</div>
 
             <div className="flex flex-col mt-4">

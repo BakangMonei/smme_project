@@ -64,7 +64,7 @@ function FundingOpportunity() {
     };
 
     return (
-        <div>
+        <div className='min-h-screen'>
             <h1 className="text-4xl text-center font-bold mb-4">Funding Opportunities</h1>
             <div className="grid grid-cols-3 bg-white p-4 rounded-lg shadow-md mx-auto">
                 {fundingOpps.map((fundingOpp) => (

@@ -3,7 +3,7 @@ import React from 'react';
 
 function AdminMentorMatch() {
     return (
-        <div className="bg-white w-96 h-auto p-4 rounded-lg shadow-md mx-auto">
+        <div className="bg-white w-96 h-screen p-4 rounded-lg shadow-md mx-auto">
             <div className="text-black text-4xl text-center font-bold font-sans border-b-2">Add Mentor</div>
 
             <div className="flex flex-col mt-4">

@@ -82,7 +82,7 @@ const AdminDashboard = () => {
         getUserData();
     }, []);
     return (
-        <div className="flex h-auto bg-gray-100">
+        <div className="flex h-screen bg-gray-100">
             {/* Sidebar */}
             <div className="w-1/5 bg-gray-800 text-white p-10">
                 <div className="flex items-center mb-4">
