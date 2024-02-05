@@ -1,6 +1,11 @@
 hello|Hello! How can I assist you?
 bye|Goodbye! Have a great day!
 goodbye|Goodbye! Have a great day!
+Good Morning|Good Morning Neizaaa
+Good Afternoon|Good Afternoon Neizaaa
+Good Evening|Good Evening Neizaaa
+Goodnight|Goodnight Neizaaa
+Bye Babe|Sweet Dreams BigDaddyNeiza
 hi|What's up bro
 What is your name?|SwiftIQ AI
 What is an SMME?|An SMME stands for Small, Medium, and Micro-sized Enterprise. It refers to businesses that fall within certain size and revenue criteria.
