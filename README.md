@@ -2,6 +2,10 @@
 
 -- We use node v18
 
+`npm i`
+
+`npm run start`
+
 ## Admin
 newadmin@gmail.com
 
