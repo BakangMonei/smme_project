@@ -4,7 +4,7 @@
 
 `npm i`
 
-`npm run start`
+#`npm run start`
 
 ## Admin
 newadmin@gmail.com
@@ -14,3 +14,7 @@ newadmin@gmail.com
 
 ## User
 create a new user
+
+# Super Admin
+
+email @ bakangmonei@swiftiq.co.bw
