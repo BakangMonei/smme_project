@@ -9,11 +9,10 @@
 ## Admin
 newadmin@gmail.com
 
-
 123456789
 
 ## User
-create a new userssss
+create a new user
 
 # Super Admin
 
