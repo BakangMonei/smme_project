@@ -17,3 +17,5 @@ create a new user
 # Super Admin
 
 email @ bakangmonei@swiftiq.co.bw
+
+bakangmonei2@gmail.com
