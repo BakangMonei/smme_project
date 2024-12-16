@@ -10,8 +10,6 @@ import {
   MapPin,
   Phone,
   List,
-  CheckCircle,
-  AlertCircle,
   Loader2,
 } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
@@ -19,7 +17,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const RegisterPage = () => {
   const businessTypes = ["Retail", "Service", "Technology", "Food", "Other"];
-  const businessSectors = ["Finance", "Healthcare", "Education", "Manufacturing", "Other"];
+  const businessSectors = [
+    "Finance",
+    "Healthcare",
+    "Education",
+    "Manufacturing",
+    "Other",
+  ];
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -52,7 +56,10 @@ export const RegisterPage = () => {
     }
 
     try {
-      const emailExistsQuery = query(collection(firestore, "users"), where("email", "==", email));
+      const emailExistsQuery = query(
+        collection(firestore, "users"),
+        where("email", "==", email)
+      );
       const emailExistsSnapshot = await getDocs(emailExistsQuery);
 
       if (!emailExistsSnapshot.empty) {
@@ -201,7 +208,11 @@ export const RegisterPage = () => {
             className="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg flex items-center justify-center"
             disabled={loading}
           >
-            {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Register"}
+            {loading ? (
+              <Loader2 className="h-5 w-5 animate-spin" />
+            ) : (
+              "Register"
+            )}
           </button>
           <div className="text-center">
             <button

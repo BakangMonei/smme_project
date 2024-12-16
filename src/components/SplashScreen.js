@@ -1,37 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import logo from '../logo.svg';
-import test from '../images/test_img.jpg';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import logo from "../logo.svg";
 
 const SplashScreen = () => {
-    const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        // Simulate a loading process for 4 seconds
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-            navigate('/LoginPage'); // Navigate to LoginPage.js
-        }, 4000);
+  useEffect(() => {
+    // Navigate to the login page after 3 seconds
+    const timer = setTimeout(() => {
+      navigate("/LoginPage"); // Navigate to LoginPage.js
+    }, 3000);
 
-        return () => clearTimeout(timer);
-    }, [navigate]);
+    // Cleanup the timer if the component is unmounted
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
-    return (
-        <div className="flex flex-col items-center justify-center h-screen">
-            {isLoading ? (
-                // Loading spinner while waiting
-                <div className="animate-spin text-4xl mb-4">Loading...</div>
-            ) : (
-                // Replace this with your own image
-                <img
-                    src={logo}
-                    alt="Splash Image"
-                    className="w-64 h-64 animate-fade-in"
-                />
-            )}
-        </div>
-    );
+  return (
+    <div className="flex items-center justify-center h-screen bg-blue-500">
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 1.5 }}
+          className="text-center text-white"
+        >
+          <img
+            src={logo}
+            alt="Logo"
+            className="w-24 h-24 mx-auto mb-4"
+          />
+          <h1 className="text-4xl font-bold">Welcome to Business Connect</h1>
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 2 }}
+            className="h-1 bg-white mt-4 rounded"
+          ></motion.div>
+          <p className="mt-4 text-lg">Empowering businesses with technology.</p>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
 };
 
 export default SplashScreen;
