@@ -1,7 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth"; // Add Auth
+import {
+  getAuth,
+  sendSignInLinkToEmail,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  createUserWithEmailAndPassword,
+} from "firebase/auth"; // Add Auth
 import { collection, getFirestore } from "firebase/firestore"; // Add Firestore
 import { getDatabase } from "firebase/database"; // Add Realtime Database
 import { getStorage } from "firebase/storage"; // Add Storage
@@ -42,4 +48,14 @@ async function getDetails(firestore, email) {
   }
 }
 
-export { auth, firestore, database, storage, firebaseApp };
+export {
+  auth,
+  firestore,
+  database,
+  storage,
+  sendSignInLinkToEmail,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  createUserWithEmailAndPassword,
+  firebaseApp,
+};
