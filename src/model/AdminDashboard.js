@@ -1,289 +1,184 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // If you're using React Router
-import { FaHome } from 'react-icons/fa'; // You can choose any icon you prefer
-import { BsFillPersonPlusFill } from 'react-icons/bs';
-import { AiFillBank } from 'react-icons/ai';
-import { FaChalkboardTeacher } from 'react-icons/fa';
-import { FaNetworkWired } from 'react-icons/fa';
-import { LiaBookSolid } from 'react-icons/lia';
-import { BiLogoZoom } from 'react-icons/bi';
-import { FaHandshake } from 'react-icons/fa';
-import { AiOutlineUser, AiFillMessage } from 'react-icons/ai';
-import { GrResources } from 'react-icons/gr';
-import { PiChalkboardTeacher } from 'react-icons/pi';
-import { FaMoneyBillWave } from 'react-icons/fa';
-import { FiSettings } from 'react-icons/fi';
-import { IoIosNotificationsOutline } from 'react-icons/io';
-import { AiOutlineLogout } from 'react-icons/ai';
-import { MdOutlineAdminPanelSettings } from 'react-icons/md';
-import { FiUsers } from 'react-icons/fi';
-import { FaRobot } from 'react-icons/fa';
-import { auth } from '../firebase'; // Import auth from Firebase
-import { useEffect} from 'react';
-import { BiPhoneCall } from 'react-icons/bi';
-import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Import Firestore functions
-
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  FaHome,
+  FaChalkboardTeacher,
+  FaHandshake,
+  FaMoneyBillWave,
+  FaRobot,
+} from "react-icons/fa";
+import {
+  AiFillBank,
+  AiFillMessage,
+  AiOutlineLogout,
+  AiOutlineUser,
+} from "react-icons/ai";
+import { BsFillPersonPlusFill } from "react-icons/bs";
+import { BiPhoneCall, BiLogoZoom } from "react-icons/bi";
+import { IoIosNotificationsOutline } from "react-icons/io";
+import { FiSettings, FiUsers } from "react-icons/fi";
+import { GrResources } from "react-icons/gr";
+import { PiChalkboardTeacher } from "react-icons/pi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { auth } from "../firebase";
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
+  const [authenticated, setAuthenticated] = useState(true);
+  const [userData, setUserData] = useState(null);
 
+  // Fetch user data from Firestore
+  const getUserData = async () => {
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        const db = getFirestore();
+        const adminRef = doc(db, "admin", user.uid);
+        const adminSnapshot = await getDoc(adminRef);
 
-    // Function to handle user logout
-    const handleLogout = async () => {
-        try {
-            await auth.signOut(); // Sign the user out using Firebase auth
-            setAuthenticated(false); // Set authenticated state to false
-            navigate('/LoginPage'); // Redirect to LoginPage using the navigate function
-        } catch (error) {
-            console.error('Error logging out:', error);
+        if (adminSnapshot.exists()) {
+          const { firstname, lastname } = adminSnapshot.data();
+          setUserData({ firstname, lastname });
+        } else {
+          toast.warn("Admin data not found.");
         }
-    };
-    const navigate = useNavigate();
-    const [authenticated, setAuthenticated] = useState(true);
-    const [userData, setUserData] = useState(null);
+      }
+    } catch (error) {
+      toast.error("Error fetching user data.");
+      console.error(error);
+    }
+  };
 
-    // Function to fetch user data from Firestore
-    const getUserData = async () => {
-        try {
-            const user = auth.currentUser;
-            console.log('Current User:', user); // Log the current user
-            if (user) {
-                const db = getFirestore();
-                const adminRef = doc(db, 'admin', user.uid);
+  // Handle logout
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      setAuthenticated(false);
+      toast.success("Logged out successfully!");
+      navigate("/LoginPage");
+    } catch (error) {
+      toast.error("Error logging out.");
+      console.error(error);
+    }
+  };
 
-                console.log('Admin Document Reference:', adminRef); // Log the document reference
+  useEffect(() => {
+    getUserData();
+  }, []);
 
-                const adminSnapshot = await getDoc(adminRef);
-
-                console.log('Admin Snapshot:', adminSnapshot); // Log the document snapshot
-
-                if (adminSnapshot.exists()) {
-                    const adminData = adminSnapshot.data();
-                    console.log('Admin Data:', adminData); // Log the admin data
-
-                    // Assuming 'firstname' and 'lastname' exist in the admin document
-                    const { firstname, lastname } = adminData;
-
-                    // Set the user data in state
-                    setUserData({ firstname, lastname });
-                } else {
-                    console.log('Admin document does not exist for the user.');
-                }
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-        }
-    };
-
-
-
-
-
-    useEffect(() => {
-        getUserData();
-    }, []);
-    return (
-        <div className="flex h-screen bg-gray-100">
-            {/* Sidebar */}
-            <div className="w-1/5 bg-gray-800 text-white p-10">
-                <div className="flex items-center mb-4">
-                    <img
-                        src='https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'
-                        alt="Profile"
-                        className="w-10 h-10 rounded-full mr-2"
-                    />
-                    {userData ? (
-                        <span>{userData.firstname} {userData.lastname}</span>
-                    ) : (
-                        <span>Loading...</span>
-                    )}
-                </div>
-
-                <hr className="my-4 border-t border-gray-600" />
-                <ul>
-                    {/* Sidebar options */}
-                    <Link to="/Chat"> {/* Replace "to" with your actual route if using React Router */}
-                        <li className="flex items-center my-2">
-                            <FaRobot className="h-5 w-5 mr-2" /> {/* Adjust the icon size and styles as needed */}
-                            SwiftIQ AI
-                        </li>
-                    </Link>
-                    <Link to="#"> {/* Replace "to" with your actual route if using React Router */}
-                        <li className="flex items-center my-2">
-                            <AiFillMessage className="h-5 w-5 mr-2" /> {/* Adjust the icon size and styles as needed */}
-                            Inbox
-                        </li>
-                    </Link>
-                    <Link to="#"> {/* Replace "to" with your actual route if using React Router */}
-                        <li className="flex items-center my-2">
-                            <BiPhoneCall className="h-5 w-5 mr-2" /> {/* Adjust the icon size and styles as needed */}
-                            Calls
-                        </li>
-                    </Link>
-                    <Link to="#"> {/* Replace "to" with your actual route if using React Router */}
-                        <li className="flex items-center my-2">
-                            <IoIosNotificationsOutline className="h-5 w-5 mr-2" /> {/* Adjust the icon size and styles as needed */}
-                            Notifications
-                        </li>
-                    </Link>
-                    <Link to="/Settings"> {/* Replace "to" with your actual route if using React Router */}
-                        <li className="flex items-center my-2">
-                            <FiSettings className="h-5 w-5 mr-2" /> {/* Adjust the icon size and styles as needed */}
-                            Settings
-                        </li>
-                    </Link>
-                    <li className="flex items-center my-2 cursor-pointer" onClick={handleLogout}>
-                        <AiOutlineLogout className="h-5 w-5 mr-2" />
-                        Logout
-                    </li>
-                    
-                    {/* Add more sidebar options similarly */}
-                    
-                </ul>
-            </div>
-            {/* Content */}
-            <div className="w-4/5 p-4">
-                <h1 className="text-4xl font-bold text-center pb-4">Admin Dashboard</h1>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                    {/* Content boxes */}
-                    <Link to="/AdminProfile">
-                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
-                            <div className="flex justify-center items-center mt-8 font-bold">
-                                <FaHome size={32} />
-                                <p className="ml-2 font-bold">My Profile</p>
-                            </div>
-                            <p className="mt-2 text-sm font-semibold">This is the Administrator Profile</p>
-                        </div>
-                    </Link>
-
-                    <Link to="/AdminAddIndividual">
-                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
-                            <div className="flex justify-center items-center mt-8 font-bold">
-                                <BsFillPersonPlusFill size={32} /> 
-                                <p className="ml-2 font-bold">Add Users</p> 
-                            </div>
-                            <p className="mt-2 text-sm font-semibold">Click to add New Individual or Company</p>
-                        </div>
-                    </Link>
-                  
-                    <Link to="/AdminFundingOpp">
-                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
-                            <div className="flex justify-center items-center mt-8 font-bold">
-                                <AiFillBank size={32} />
-                                <p className="ml-2 font-bold">Add Funding Opportunities</p>
-                            </div>
-                            <p className="mt-2 text-sm font-semibold">Click to add New Funding Opportunities</p>
-                        </div>
-                    </Link>
-
-                    <Link to="/AdminMentorMatch">
-                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
-                            <div className="flex justify-center items-center mt-8 font-bold">
-                                <FaChalkboardTeacher size={32} />
-                                <p className="ml-2 font-bold">Add Mentor</p>
-                            </div>
-                            <p className="mt-2 text-sm font-semibold">Click to add New Mentor</p>
-                        </div>
-                    </Link>
-
-                    <Link to="/AdminNetwork">
-                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
-                            <div className="flex justify-center items-center mt-8 font-bold">
-                                <FaNetworkWired size={32} />
-                                <p className="ml-2 font-bold">Add Networking Collabs</p> 
-                            </div>
-                            <p className="mt-2 text-sm font-semibold">Click to add New Networking Opportunities</p>
-                        </div>
-                    </Link>
-
-                    <Link to="/AdminUserResources">
-                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
-                            <div className="flex justify-center items-center mt-8 font-bold">
-                                <LiaBookSolid size={32} />
-                                <p className="ml-2 font-bold">Add Useful Resources</p> 
-                            </div>
-                            <p className="mt-2 text-sm font-semibold">Click to add New Resources</p>
-                        </div>
-                    </Link>
-
-                    <Link to="/AdminVirtualIncubators">
-                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
-                            <div className="flex justify-center items-center mt-8 font-bold">
-                                <BiLogoZoom size={32} />
-                                <p className="ml-2 font-bold">Create Incubators</p>
-                            </div>
-                            <p className="mt-2 text-sm font-semibold">Click to add New Incubator</p>
-                        </div>
-                    </Link>
-
-                    <Link to="/UserDashboard">
-                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
-                            <div className="flex justify-center items-center mt-8 font-bold">
-                                <AiOutlineUser size={32} /> 
-                                <p className="ml-2 font-bold">Log As User</p>
-                            </div>
-                            <p className="mt-2 text-sm font-semibold">Click to experience user view</p>
-                        </div>
-                    </Link>
-
-                    <Link to="/UserResources">
-                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
-                            <div className="flex justify-center items-center mt-8 font-bold">
-                                <GrResources size={32} />
-                                <p className="ml-2 font-bold">View Resources</p>
-                            </div>
-                            <p className="mt-2 text-sm font-semibold">Click to View Resources</p>
-                        </div>
-                    </Link>
-                    <Link to="/NetworkingCollaboration">
-                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
-                            <div className="flex justify-center items-center mt-8 font-bold">
-                                <GrResources size={32} />
-                                <p className="ml-2 font-bold">View Networks & Collabs</p>
-                            </div>
-                            <p className="mt-2 text-sm font-semibold">Click to View Networks & Collabs</p>
-                        </div>
-                    </Link>
-                    <Link to="/MentorMatch">
-                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
-                            <div className="flex justify-center items-center mt-8 font-bold">
-                                <PiChalkboardTeacher size={32} />
-                                <p className="ml-2 font-bold">View Mentors</p>
-                            </div>
-                            <p className="mt-2 text-sm font-semibold">Click to View Mentors and interact</p>
-                        </div>
-                    </Link>
-                    <Link to="/AdminViewFundingOpportunity">
-                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
-                            <div className="flex justify-center items-center mt-8 font-bold">
-                                <FaMoneyBillWave size={32} />
-                                <p className="ml-2 font-bold">View Funding Opportunities</p>
-                            </div>
-                            <p className="mt-2 text-sm font-semibold">Click to learn more about funding Opportunities and more...</p>
-                        </div>
-                    </Link>
-                    <Link to="/VirtualIncubators">
-                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
-                            <div className="flex justify-center items-center mt-8 font-bold">
-                                <FaHandshake size={32} />
-                                <p className="ml-2 font-bold">Join Incubators</p>
-                            </div>
-                            <p className="mt-2 text-sm font-semibold">Click to join on-going Incubators</p>
-                        </div>
-                    </Link>
-
-                    <Link to="/AdminViewUsers">
-                        <div className="bg-white p-4 shadow-md w-48 h-48 border-2 border-blue-500 rounded-2xl text-center">
-                            <div className="flex justify-center items-center mt-8 font-bold">
-                                <FiUsers size={32} />
-                                <p className="ml-2 font-bold">View All Users</p>
-                            </div>
-                            <p className="mt-2 text-sm font-semibold">Click to view users</p>
-                        </div>
-                    </Link>
-                </div>
-            </div>
+  return (
+    <div className="flex h-screen bg-gray-100">
+      <ToastContainer />
+      {/* Sidebar */}
+      <div className="w-1/5 bg-blue-600 text-white p-6">
+        <div className="flex items-center mb-6">
+          <img
+            src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
+            alt="Profile"
+            className="w-10 h-10 rounded-full mr-3"
+          />
+          <span className="text-lg font-semibold">
+            {userData
+              ? `${userData.firstname} ${userData.lastname}`
+              : "Loading..."}
+          </span>
         </div>
-    );
+        <hr className="border-gray-300 mb-6" />
+        <ul>
+          <Link to="/Chat">
+            <li className="flex items-center py-2 px-4 hover:bg-blue-700 rounded-lg">
+              <FaRobot className="mr-2" />
+              SwiftIQ AI
+            </li>
+          </Link>
+          <Link to="#">
+            <li className="flex items-center py-2 px-4 hover:bg-blue-700 rounded-lg">
+              <AiFillMessage className="mr-2" />
+              Inbox
+            </li>
+          </Link>
+          <Link to="#">
+            <li className="flex items-center py-2 px-4 hover:bg-blue-700 rounded-lg">
+              <BiPhoneCall className="mr-2" />
+              Calls
+            </li>
+          </Link>
+          <Link to="#">
+            <li className="flex items-center py-2 px-4 hover:bg-blue-700 rounded-lg">
+              <IoIosNotificationsOutline className="mr-2" />
+              Notifications
+            </li>
+          </Link>
+          <Link to="/Settings">
+            <li className="flex items-center py-2 px-4 hover:bg-blue-700 rounded-lg">
+              <FiSettings className="mr-2" />
+              Settings
+            </li>
+          </Link>
+          <li
+            className="flex items-center py-2 px-4 hover:bg-blue-700 rounded-lg cursor-pointer"
+            onClick={handleLogout}
+          >
+            <AiOutlineLogout className="mr-2" />
+            Logout
+          </li>
+        </ul>
+      </div>
+
+      {/* Content */}
+      <div className="w-4/5 p-6">
+        <h1 className="text-3xl font-bold text-center mb-6">Admin Dashboard</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {/* Cards */}
+          <Link to="/AdminProfile">
+            <div className="bg-white shadow-md border-2 border-blue-600 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+              <FaHome size={40} className="mx-auto text-blue-600 mb-4" />
+              <h3 className="text-lg font-semibold">My Profile</h3>
+              <p className="text-sm text-gray-600">
+                This is the Administrator Profile
+              </p>
+            </div>
+          </Link>
+
+          <Link to="/AdminAddIndividual">
+            <div className="bg-white shadow-md border-2 border-blue-600 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+              <BsFillPersonPlusFill
+                size={40}
+                className="mx-auto text-blue-600 mb-4"
+              />
+              <h3 className="text-lg font-semibold">Add Users</h3>
+              <p className="text-sm text-gray-600">
+                Click to add new individual or company
+              </p>
+            </div>
+          </Link>
+
+          <Link to="/AdminFundingOpp">
+            <div className="bg-white shadow-md border-2 border-blue-600 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+              <AiFillBank size={40} className="mx-auto text-blue-600 mb-4" />
+              <h3 className="text-lg font-semibold">Funding Opportunities</h3>
+              <p className="text-sm text-gray-600">
+                Click to add new funding opportunities
+              </p>
+            </div>
+          </Link>
+
+          <Link to="/AdminMentorMatch">
+            <div className="bg-white shadow-md border-2 border-blue-600 rounded-xl p-6 text-center hover:shadow-lg transition-all">
+              <FaChalkboardTeacher
+                size={40}
+                className="mx-auto text-blue-600 mb-4"
+              />
+              <h3 className="text-lg font-semibold">Add Mentor</h3>
+              <p className="text-sm text-gray-600">Click to add new mentor</p>
+            </div>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default AdminDashboard;
