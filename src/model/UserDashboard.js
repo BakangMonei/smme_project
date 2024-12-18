@@ -35,8 +35,7 @@ const UserDashboard = () => {
         if (userSnapshot.exists()) {
           const { firstName, lastName } = userSnapshot.data();
           setUserData({ firstName, lastName });
-          console.log(setUserData)
-          
+          console.log(setUserData);
         } else {
           toast.warn("User Data not found.");
         }
