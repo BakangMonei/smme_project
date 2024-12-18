@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, sendPasswordResetEmail } from "../firebase";
+import { auth, sendPasswordResetEmail } from "../../database/firebase";
 import { Mail, ArrowLeftCircle, Loader2 } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

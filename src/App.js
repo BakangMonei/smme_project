@@ -1,31 +1,29 @@
-import LoginPage from "./components/LoginPage";
+import LoginPage from "./screens/auth/LoginPage";
 import UserDashboard from "./model/UserDashboard";
-import RegisterPage from "./components/RegisterPage"; // Import RegisterPage component
-import ForgotPassword from "./components/ForgotPassword"; // Import ForgotPassword component
-import UserResources from "./userdash/UserResources";
-import NetworkingCollaboration from "./userdash/NetworkingCollaboration";
-import MentorMatch from "./userdash/MentorMatch";
-import FundingOpportunity from "./userdash/FundingOpportunity";
+import RegisterPage from "./screens/auth/RegisterPage"; // Import RegisterPage component
+import ForgotPassword from "./screens/auth/ForgotPassword"; // Import ForgotPassword component
+import UserResources from "./roles/user/UserResources";
+import NetworkingCollaboration from "./roles/user/NetworkingCollaboration";
+import MentorMatch from "./roles/user/MentorMatch";
+import FundingOpportunity from "./roles/user/FundingOpportunity";
 import AdminDashboard from "./model/AdminDashboard";
-import Chat from "./bot/Chat";
-import VirtualIncubators from "./userdash/VirtualIncubators";
+import VirtualIncubators from "./roles/user/VirtualIncubators";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Import the necessary components
-import AdminAddIndividual from "./admin/AdminAddIndividual";
-import AdminFundingOpp from "./admin/AdminFundingOpp";
-import AdminMentorMatch from "./admin/AdminMentorMatch";
-import AdminNetwork from "./admin/AdminNetwork";
-import AdminUserResources from "./admin/AdminUserResources";
-import AdminVirtualIncubators from "./admin/AdminVirtualIncubators";
-import AdminProfile from "./admin/AdminProfile";
+import AdminAddIndividual from "./roles/admin/AdminAddIndividual";
+import AdminFundingOpp from "./roles/admin/AdminFundingOpp";
+import AdminMentorMatch from "./roles/admin/AdminMentorMatch";
+import AdminNetwork from "./roles/admin/AdminNetwork";
+import AdminUserResources from "./roles/admin/AdminUserResources";
+import AdminVirtualIncubators from "./roles/admin/AdminVirtualIncubators";
+import AdminProfile from "./roles/admin/AdminProfile";
 import Settings from "./components/Settings";
-import AdminViewFundingOpportunity from "./admin/AdminViewFundingOpportunity";
-import AdminViewAdmins from "./admin/AdminViewAdmins";
-import AdminViewUsers from "./admin/AdminViewUsers";
-import AdminUpdateUser from "./admin/AdminUpdateUser";
-import AdminViewNetwork from "./admin/AdminViewNetwork ";
-import UserDash from "./testing/UserDash";
+import AdminViewFundingOpportunity from "./roles/admin/AdminViewFundingOpportunity";
+import AdminViewAdmins from "./roles/admin/AdminViewAdmins";
+import AdminViewUsers from "./roles/admin/AdminViewUsers";
+import AdminUpdateUser from "./roles/admin/AdminUpdateUser";
+import AdminViewNetwork from "./roles/admin/AdminViewNetwork ";
 import SuperAdminDashboard from "./model/SuperAdminDashboard";
-import SplashScreen from "./components/SplashScreen";
+import SplashScreen from "./screens/SplashScreen";
 
 function App() {
   return (
@@ -98,8 +96,6 @@ function App() {
         <Route path="/RegisterPage" element={<RegisterPage />} />
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
         <Route path="/Settings" element={<Settings />} />
-        {/* ChatBot */}
-        <Route path="/Chat" element={<Chat />} />
       </Routes>
     </Router>
   );

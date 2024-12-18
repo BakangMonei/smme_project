@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import { firestore } from '../firebase'; // Import your Firebase configuration
+import { firestore } from '../../database/firebase'; // Import your Firebase configuration
 
 const AdminNetwork = () => {
     // Initialize useNavigate for redirection

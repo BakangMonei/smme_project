@@ -23,7 +23,7 @@ import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import { auth } from "../firebase";
+import { auth } from "../database/firebase";
 
 const SuperAdminDashboard = () => {
   const navigate = useNavigate();

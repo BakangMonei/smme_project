@@ -1,7 +1,7 @@
 // Done [Working Vety Well]
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
-import { firestore } from '../firebase';
+import { firestore } from '../../database/firebase';
 
 function FundingOpportunity() {
     const [fundingOpps, setFundingOpps] = useState([]);

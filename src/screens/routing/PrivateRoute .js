@@ -4,7 +4,7 @@ import LoginPage from './LoginPage'; // Import your LoginPage component
 import AdminDashboard from './AdminDashboard'; // Import your AdminDashboard component
 import UserDashboard from './UserDashboard'; // Import your UserDashboard component
 import PrivateRoute from './PrivateRoute'; // Import the PrivateRoute component
-import SuperAdminDashboard from '../model/SuperAdminDashboard';
+import SuperAdminDashboard from '../../model/SuperAdminDashboard';
 
 function App() {
     const [authenticated, setAuthenticated] = useState(false);

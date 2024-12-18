@@ -22,7 +22,7 @@ import { PiChalkboardTeacher } from "react-icons/pi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import { auth } from "../firebase";
+import { auth } from "../database/firebase";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();

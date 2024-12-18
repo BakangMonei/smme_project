@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
-import { firestore } from '../firebase'; // Import your Firebase configuration
+import { firestore } from '../../database/firebase'; // Import your Firebase configuration
 
 const Card = ({ network, onDelete, onUpdate }) => {
     const [isEditing, setIsEditing] = useState(false);

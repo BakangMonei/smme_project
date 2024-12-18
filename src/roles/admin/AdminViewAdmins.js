@@ -1,7 +1,7 @@
 // Done [Working Vety Well]
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
-import { firestore } from '../firebase'; // Import your firebase configuration
+import { firestore } from '../../database/firebase'; // Import your firebase configuration
 import AdminUpdateUser from './AdminUpdateUser'; // Import the AdminUpdateUser component
 
 const AdminViewAdmins = () => {

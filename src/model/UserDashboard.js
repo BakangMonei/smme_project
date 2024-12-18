@@ -16,7 +16,7 @@ import { GrResources } from "react-icons/gr";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import { auth } from "../firebase";
+import { auth } from "../database/firebase";
 
 const UserDashboard = () => {
   const navigate = useNavigate();

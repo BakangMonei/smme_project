@@ -1,7 +1,7 @@
 // Done [Working Vety Well]
 import React, { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
-import { firestore } from '../firebase'; // Import your Firebase configuration
+import { firestore } from '../../database/firebase'; // Import your Firebase configuration
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 
 function AdminFundingOpp() {
