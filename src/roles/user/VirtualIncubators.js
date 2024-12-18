@@ -1,5 +1,5 @@
 import React from 'react';
-import test from '../images/test_img.jpg';
+import test from '../../assets/images/test_img.jpg';
 
 const VirtualIncubators = () => {
     return (

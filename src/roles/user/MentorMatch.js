@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import test from '../images/test_img.jpg';
+import test from '../../assets/images/test_img.jpg';
 import { AiFillLinkedin } from 'react-icons/ai';
 import { FiMail, FiFacebook, FiPhone } from 'react-icons/fi'; // Import icons for Mail, Facebook, and Phone
 

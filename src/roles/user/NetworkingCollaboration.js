@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import test from '../images/test_img.jpg';
+import test from '../../assets/images/test_img.jpg';
+
+// C:\Users\mokwa\OneDrive\Desktop\smme_project\src\assets\images\test_img.jpg
 
 const NetworkingCollaboration = () => {
     const sectors = [
