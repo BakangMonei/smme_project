@@ -29,14 +29,16 @@ const UserDashboard = () => {
       const user = auth.currentUser;
       if (user) {
         const db = getFirestore();
-        const adminRef = doc(db, "users", user.uid);
-        const adminSnapshot = await getDoc(adminRef);
+        const userRef = doc(db, "users", user.uid);
+        const userSnapshot = await getDoc(userRef);
 
-        if (adminSnapshot.exists()) {
-          const { firstname, lastname } = adminSnapshot.data();
-          setUserData({ firstname, lastname });
+        if (userSnapshot.exists()) {
+          const { firstName, lastName } = userSnapshot.data();
+          setUserData({ firstName, lastName });
+          console.log(setUserData)
+          
         } else {
-          toast.warn("Admin data not found.");
+          toast.warn("User Data not found.");
         }
       }
     } catch (error) {
@@ -70,7 +72,7 @@ const UserDashboard = () => {
         <div className="flex items-center mb-6">
           <FaUserCircle className="h-10 w-10 mr-2" />
           <span className="text-lg font-semibold">
-            {userData ? `${userData.firstname} ${userData.lastname}` : "User"}
+            {userData ? `${userData.firstName} ${userData.lastName}` : "User"}
           </span>
         </div>
         <hr className="border-gray-300 mb-6" />

@@ -41,13 +41,13 @@ const LoginPage = () => {
 
       if (userSnapshot.size > 0) {
         toast.success("Welcome User");
-        navigate('/UserDashboard');
+        navigate("/UserDashboard");
       } else if (adminSnapshot.size > 0) {
         toast.success("Welcome, Admin!");
-        navigate('/AdminDashboard');
+        navigate("/AdminDashboard");
       } else if (sAdminSnapshot.size > 0) {
         toast.success("Welcome, Super Admin!");
-        navigate('/SuperAdminDashboard');
+        navigate("/SuperAdminDashboard");
       } else {
         toast.error(
           "Invalid email or password. Please check your credentials."

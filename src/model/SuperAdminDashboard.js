@@ -13,7 +13,7 @@ import {
   AiOutlineLogout,
   AiOutlineUser,
 } from "react-icons/ai";
-import {BsFillPersonPlusFill} from "react-icons/bs"
+import { BsFillPersonPlusFill } from "react-icons/bs";
 import { BiPhoneCall, BiLogoZoom } from "react-icons/bi";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { FiSettings, FiUsers } from "react-icons/fi";
@@ -83,7 +83,7 @@ const SuperAdminDashboard = () => {
           <span className="text-lg font-semibold">
             {userData
               ? `${userData.firstname} ${userData.lastname}`
-              : "Mr. Bakang Monei Motshegwe"}
+              : "No SuperAdmin Stuff"}
           </span>
         </div>
         <hr className="border-gray-300 mb-6" />
